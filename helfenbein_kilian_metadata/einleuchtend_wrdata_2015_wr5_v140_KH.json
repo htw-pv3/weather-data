@@ -107,7 +107,7 @@
                         "description": "Timestamp without time zone",
                         "type": "timestamp",
                         "unit": "YYYY-MM-DD HH:MM:SS"
-                    {
+                    }
 					{
                         "name": "WRNrRef",
                         "description": "inverter reference number",
