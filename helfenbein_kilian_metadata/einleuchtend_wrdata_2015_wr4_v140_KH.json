@@ -1,14 +1,16 @@
 {
-    "name": "pv3.htw_weatherdata_2015",
-    "title": "HTW Weatherdata",
+    "name": "einleuchtend_wrdata_2015_wr4_v140_KH",
+    "title": "einleuchtend WR 4 data",
     "id": null,
-    "description": "HTW Weatherdata 2015",
+    "description": "einleuchtend e.V. inverter 4 data",
     "language": [
         "en-GB",
 		"de-DE"
     ],
     "keywords": [
-        "weatherdata"
+        "wr4",
+		"inverter",
+		"einleuchtend"
     ],
     "publicationDate": null,
     "context": {
@@ -39,7 +41,7 @@
     "sources": [
         {
             "title": "W-PV3 Solaranlagen und -kraftwerke metadata weatherdata",
-            "description": "Meta data for the measurement of the fracture sensors of the experimental facility of einleuchtend e.V. at the HTW Berlin",
+            "description": "Metadata for the measurement series of inverter 1 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
             "path": "https://github.com/htw-pv3/weather-data",
             "licenses": [
                 {
@@ -52,16 +54,16 @@
             ]
         },
         {
-            "title": "wetter.htw-berlin.de",
+            "title": "SonnJa! einleuchtend e.V.",
             "description": "Data",
-            "path": "https://wetter.htw-berlin.de/Download",
+            "path": "http://sonnja.einleuchtend.org/",
             "licenses": [
                 {
                     "name": "unknown",
                     "title": "unknown",
-                    "path": "https://wetter.htw-berlin.de/About/Disclaimer",
+                    "path": "http://einleuchtend.org/impressum/",
                     "instruction": "unknown",
-                    "attribution": "© 2020 - wetter.htw-berlin.de"
+                    "attribution": "©2009 - 2020 einleuchtend e.V."
                 }
             ]
         }
@@ -86,7 +88,7 @@
         {
             "title": "Kilian Helfenbein",
             "email": null,
-            "date": "2020-05-03",
+            "date": "2020-05-04",
             "object": "metadata",
             "comment": "Add metadata"
         }
@@ -94,7 +96,7 @@
     "resources": [
         {
             "profile": "tabular-data-resource",
-            "name": "pv3.htw_wetter_weatherdata_2015_v140_KH",
+            "name": "pv3.einleuchtend_wrdata_2015_wr4_v140_KH",
             "path": "https://github.com/htw-pv3/weather-data/tree/MyMetaData/helfenbein_kilian",
             "format": "PostgreSQL",
             "encoding": "UTF-8",
@@ -106,70 +108,118 @@
                         "type": "timestamp",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     {
-                        "name": "G_hor_CMP6",
-                        "description": "global irradiance horizontal CMP6 Pyranometer",
+					{
+                        "name": "WRNrRef",
+                        "description": "inverter reference number",
                         "type": "serial",
-                        "unit": "W/m^2"
-                    }
+                        "unit": "text"
                     {
-                        "name": "G_hor_Si",
-                        "description": "global irradiance horizontal SI-Pyranometer",
+                        "name": "U_PV",
+                        "description": "DC PV Voltage",
                         "type": "double precision",
-                        "unit": "W/m^2"
+                        "unit": "V"
                     }
                     {
-                        "name": "G_gen_CMP11",
-                        "description": "global irradiance sloped south 35° CMP11 Pyranometer",
+                        "name": "I_PV",
+                        "description": "DC PV Current",
                         "type": "double precision",
-                        "unit": "W/m^2"
+                        "unit": "A"
                     }
                     {
-                        "name": "G_gen_Si",
-                        "description": "global irradiance sloped south 35° SI-Pyranometer",
-                        "type": "serial",
-                        "unit": "W/m^2"
+                        "name": "F",
+                        "description": "unknown; always zero",
+                        "type": "double precision",
+                        "unit": null
                     }
                     {
-                        "name": "Ev_Beleuchtung",
-                        "description": "unknown",
+                        "name": "U_AC",
+                        "description": "AC Voltage",
+                        "type": "double precision",
+                        "unit": null
+                    }
+                    {
+                        "name": "I_AC",
+                        "description": "AC Current",
+                        "type": "double precision",
+                        "unit": null
+                    }
+                    {
+                        "name": "P_AC",
+                        "description": "AC Power",
+                        "type": "double precision",
+                        "unit": "W"
+                    }
+                    {
+                        "name": "E_delta_WR",
+                        "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     }
                     {
-                        "name": "v_Wind",
-                        "description": "Wind speed",
+                        "name": "E_delta_Z",
+                        "description": "Energy unknown",
                         "type": "double precision",
-                        "unit": "m/s"
+                        "unit": "unknown"
                     }
                     {
-                        "name": "d_Wind",
-                        "description": "Wind direction",
+                        "name": "E_total_WR",
+                        "description": "Cumulative Energy unknown",
+                        "type": "double precision",
+                        "unit": "unknown"
+                    }
+                    {
+                        "name": "E_total_Z",
+                        "description": "Cumulative Energy unknown",
                         "type": "serial",
-                        "unit": "°"
+                        "unit": "unknown"
                     }
                     {
-                        "name": "T_Luft",
-                        "description": "Ambient temperature",
+                        "name": "eta_WR",
+                        "description": "Efficiency Inverter",
+                        "type": "double precision",
+                        "unit": "relative"
+                    }
+                    {
+                        "name": "T_WR",
+                        "description": "Temperature Inverter",
+                        "type": "double precision",
+                        "unit": null
+                    }
+                    {
+                        "name": "T_PV",
+                        "description": "Temperature PV",
                         "type": "double precision",
                         "unit": "°C"
                     }
                     {
-                        "name": "h_Luft",
-                        "description": "Relative Humidity",
-                        "type": "double precision",
-                        "unit": "%"
+                        "name": "R_iso",
+                        "description": "unknown; always zero",
+                        "type": "serial",
+                        "unit": "°C"
                     }
                     {
-                        "name": "p_Luft",
-                        "description": "Atmospheric pressure",
+                        "name": "time_total",
+                        "description": "unknown time; always zero",
                         "type": "double precision",
-                        "unit": "hPa"
+                        "unit": null
                     }
                     {
-                        "name": "i_Niederschlag",
-                        "description": "Precipitation",
+                        "name": "time_feedin",
+                        "description": "unknown time; always zero",
                         "type": "double precision",
-                        "unit": "unknown"
+                        "unit": null
+                    }
+                    {
+                        "name": "Status",
+                        "description": "unknown status",
+                        "type": "serial",
+                        "unit": null
+                    }
+                    {
+                        "name": "Fehler",
+                        "description": "Error Code",
+                        "type": "serial",
+                        "unit": null
                     }
                 ],
                 "primaryKey": [
