@@ -105,6 +105,7 @@
                         "description": "Timestamp without time zone",
                         "type": "timestamp",
                         "unit": "YYYY-MM-DD HH:MM:SS"
+					}
                     {
                         "name": "G_hor_CMP6",
                         "description": "global irradiance horizontal CMP6 Pyranometer",

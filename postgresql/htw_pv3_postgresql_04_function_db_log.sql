@@ -431,7 +431,7 @@ COMMENT ON TABLE pv3.db_log IS '{
             "date": "2020-05-03",
             "object": "metadata",
             "comment": "update metadata to 1.4"
-        },
+        }
     ],
     "resources": [
         {
@@ -453,66 +453,67 @@ COMMENT ON TABLE pv3.db_log IS '{
                         "description": "Project name",
                         "type": "text",
                         "unit": null
-                    }
+                    },
+					{
                         "name": "version",
                         "description": "Scenario version",
                         "type": "text",
                         "unit": null
                     },
-                    }
+                    {
                         "name": "io",
                         "description": "Input or output",
                         "type": "boolean",
                         "unit": null
                     },
-                    }
+                    {
                         "name": "schema_name",
                         "description": "Schema name",
                         "type": "text",
                         "unit": null
                     },
-                    }
+                    {
                         "name": "table_name",
                         "description": "Table name",
                         "type": "text",
                         "unit": null
                     },
-                    }
+                    {
                         "name": "script_name",
                         "description": "Script name",
                         "type": "text",
                         "unit": null
                     },
-                    }
+                    {
                         "name": "entries",
                         "description": "Number of rows",
                         "type": "serial",
                         "unit": null
                     },
-                    }
+                    {
                         "name": "comment",
                         "description": "Current status and comments",
                         "type": "text",
                         "unit": null
                     },
-                    }
+                    {
                         "name": "user_name",
                         "description": "Author (session user)",
                         "type": "text",
                         "unit": null
                     },
-                    }
+                    {
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
                         "type": "timestamp",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
-                    }
+                    {
                         "name": "meta_data",
                         "description": "Copy of the input metadata",
                         "type": "file",
                         "unit": null
-                    },
+                    }
                 ],
                 "primaryKey": [
                     "id"
@@ -558,7 +559,6 @@ COMMENT ON TABLE pv3.db_log IS '{
         "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/wiki)",
         "null": "If not applicable use (null)"
     }
-}
 }';
 
 

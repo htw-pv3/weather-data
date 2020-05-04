@@ -227,7 +227,7 @@
                         "description": "Copy of the input metadata",
                         "type": "file",
                         "unit": null
-                    },
+                    }
                 ],
                 "primaryKey": [
                     "id"

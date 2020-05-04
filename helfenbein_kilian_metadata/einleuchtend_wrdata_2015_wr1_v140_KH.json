@@ -107,114 +107,115 @@
                         "description": "Timestamp without time zone",
                         "type": "timestamp",
                         "unit": "YYYY-MM-DD HH:MM:SS"
-                    }
+                    },
 					{
                         "name": "WRNrRef",
                         "description": "inverter reference number",
                         "type": "serial",
                         "unit": "text"
-                    {
+                    },
+					{
                         "name": "U_PV",
                         "description": "DC PV Voltage",
                         "type": "double precision",
                         "unit": "V"
-                    }
+                    },
                     {
                         "name": "I_PV",
                         "description": "DC PV Current",
                         "type": "double precision",
                         "unit": "A"
-                    }
+                    },
                     {
                         "name": "F",
                         "description": "unknown; always zero",
                         "type": "boolean",
                         "unit": null
-                    }
+                    },
                     {
                         "name": "U_AC",
                         "description": "AC Voltage; always zero",
                         "type": "serial",
                         "unit": null
-                    }
+                    },
                     {
                         "name": "I_AC",
                         "description": "AC Current; always zero",
                         "type": "serial",
                         "unit": null
-                    }
+                    },
                     {
                         "name": "P_AC",
                         "description": "AC Power",
                         "type": "serial",
                         "unit": "W"
-                    }
+                    },
                     {
                         "name": "E_delta_WR",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
-                    }
+                    },
                     {
                         "name": "E_delta_Z",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
-                    }
+                    },
                     {
                         "name": "E_total_WR",
                         "description": "Cumulative Energy unknown",
                         "type": "serial",
                         "unit": "unknown"
-                    }
+                    },
                     {
                         "name": "E_total_Z",
                         "description": "Cumulative Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
-                    }
+                    },
                     {
                         "name": "eta_WR",
                         "description": "Efficiency Inverter",
                         "type": "double precision",
                         "unit": "relative"
-                    }
+                    },
                     {
                         "name": "T_WR",
                         "description": "Temperature Inverter; always zero",
                         "type": "serial",
                         "unit": null
-                    }
+                    },
                     {
                         "name": "T_PV",
                         "description": "Temperature PV",
                         "type": "double precision",
                         "unit": "°C"
-                    }
+                    },
                     {
                         "name": "R_iso",
                         "description": "unknown; always zero",
                         "type": "serial",
                         "unit": "°C"
-                    }
+                    },
                     {
                         "name": "time_total",
                         "description": "unknown time; always zero",
                         "type": "double precision",
                         "unit": null
-                    }
+                    },
                     {
                         "name": "time_feedin",
                         "description": "unknown time; always zero",
                         "type": "double precision",
                         "unit": null
-                    }
+                    },
                     {
                         "name": "Status",
                         "description": "unknown status",
                         "type": "serial",
                         "unit": null
-                    }
+                    },
                     {
                         "name": "Fehler",
                         "description": "Error Code",
