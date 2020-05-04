@@ -167,7 +167,8 @@
                         "description": "Project name",
                         "type": "text",
                         "unit": null
-                    }
+                    },
+					{
                         "name": "version",
                         "description": "Scenario version",
                         "type": "text",
@@ -203,7 +204,7 @@
                         "type": "serial",
                         "unit": null
                     },
-                    }
+                    {
                         "name": "comment",
                         "description": "Current status and comments",
                         "type": "text",
