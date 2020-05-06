@@ -109,7 +109,7 @@
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
 					{
-                        "name": "WRNrRef",
+                        "name": "wrnref",
                         "description": "inverter reference number",
                         "type": "varchar(3)",
                         "unit": "text"
