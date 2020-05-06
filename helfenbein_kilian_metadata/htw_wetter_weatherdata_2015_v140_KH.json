@@ -89,6 +89,13 @@
             "date": "2020-05-03",
             "object": "metadata",
             "comment": "Add metadata"
+        },
+		{
+            "title": "Thomas Kalkowski",
+            "email": null,
+            "date": "2020-05-06",
+            "object": "metadata",
+            "comment": "Corrected some types and cahnged all names to lowercase"
         }
     ],
     "resources": [
@@ -103,71 +110,71 @@
 					{
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
-                        "type": "timestamp",
+                        "type": "timestamp without time zone NOT NULL",
                         "unit": "YYYY-MM-DD HH:MM:SS"
 					}
                     {
-                        "name": "G_hor_CMP6",
+                        "name": "g_hor_cmp6",
                         "description": "global irradiance horizontal CMP6 Pyranometer",
-                        "type": "serial",
+                        "type": "integer",
                         "unit": "W/m^2"
                     }
                     {
-                        "name": "G_hor_Si",
+                        "name": "g_hor_si",
                         "description": "global irradiance horizontal SI-Pyranometer",
                         "type": "double precision",
                         "unit": "W/m^2"
                     }
                     {
-                        "name": "G_gen_CMP11",
+                        "name": "g_gen_cmp11",
                         "description": "global irradiance sloped south 35° CMP11 Pyranometer",
                         "type": "double precision",
                         "unit": "W/m^2"
                     }
                     {
-                        "name": "G_gen_Si",
+                        "name": "g_gen_si",
                         "description": "global irradiance sloped south 35° SI-Pyranometer",
-                        "type": "serial",
+                        "type": "integer",
                         "unit": "W/m^2"
                     }
                     {
-                        "name": "Ev_Beleuchtung",
+                        "name": "ev_beleuchtung",
                         "description": "unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     }
                     {
-                        "name": "v_Wind",
+                        "name": "v_wind",
                         "description": "Wind speed",
                         "type": "double precision",
                         "unit": "m/s"
                     }
                     {
-                        "name": "d_Wind",
+                        "name": "d_wind",
                         "description": "Wind direction",
-                        "type": "serial",
+                        "type": "integer",
                         "unit": "°"
                     }
                     {
-                        "name": "T_Luft",
+                        "name": "t_luft",
                         "description": "Ambient temperature",
                         "type": "double precision",
                         "unit": "°C"
                     }
                     {
-                        "name": "h_Luft",
+                        "name": "h_luft",
                         "description": "Relative Humidity",
                         "type": "double precision",
                         "unit": "%"
                     }
                     {
-                        "name": "p_Luft",
+                        "name": "p_luft",
                         "description": "Atmospheric pressure",
                         "type": "double precision",
                         "unit": "hPa"
                     }
                     {
-                        "name": "i_Niederschlag",
+                        "name": "i_niederschlag",
                         "description": "Precipitation",
                         "type": "double precision",
                         "unit": "unknown"
