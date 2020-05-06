@@ -5,12 +5,12 @@
     "description": "einleuchtend e.V. inverter 1 data",
     "language": [
         "en-GB",
-		"de-DE"
+        "de-DE"
     ],
     "keywords": [
         "wr1",
-		"inverter",
-		"einleuchtend"
+        "inverter",
+        "einleuchtend"
     ],
     "publicationDate": null,
     "context": {
@@ -78,7 +78,7 @@
         }
     ],
     "contributors": [
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2020-04-29",
@@ -109,19 +109,19 @@
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
-					{
+                    {
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
                         "type": "timestamp without time zone NOT NULL",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
-					{
+                    {
                         "name": "wrnref",
                         "description": "inverter reference number",
                         "type": "varchar(3)",
                         "unit": "text"
                     },
-					{
+                    {
                         "name": "u_pv",
                         "description": "DC PV Voltage",
                         "type": "double precision",

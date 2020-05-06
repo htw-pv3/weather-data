@@ -5,12 +5,12 @@
     "description": "einleuchtend e.V. inverter 5 data",
     "language": [
         "en-GB",
-		"de-DE"
+        "de-DE"
     ],
     "keywords": [
         "wr5",
-		"inverter",
-		"einleuchtend"
+        "inverter",
+        "einleuchtend"
     ],
     "publicationDate": null,
     "context": {
@@ -78,7 +78,7 @@
         }
     ],
     "contributors": [
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2020-04-29",
@@ -102,19 +102,19 @@
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
-					{
+                    {
                         "name": "timestamp",
                         "description": "timestamp without time zone NOT NULL",
                         "type": "timestamp",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
-					{
+                    {
                         "name": "wrnref",
                         "description": "inverter reference number",
                         "type": "varchar(3)",
                         "unit": "text"
                     },
-					{
+                    {
                         "name": "u_pv",
                         "description": "DC PV Voltage",
                         "type": "double precision",
@@ -126,7 +126,7 @@
                         "type": "double precision",
                         "unit": "A"
                     },
-					{
+                    {
                         "name": "p_dc",
                         "description": "DC Power",
                         "type": "double precision",
@@ -227,8 +227,8 @@
                         "description": "Error Code",
                         "type": "double precision",
                         "unit": null
-				    },
-					{
+                    },
+                    {
                         "name": "istberechnet",
                         "description": "unknown",
                         "type": "double precision",
@@ -240,7 +240,7 @@
                         "type": "double precision",
                         "unit": null
                     }
-					
+                    
                 ],
                 "primaryKey": [
                     "timestamp"

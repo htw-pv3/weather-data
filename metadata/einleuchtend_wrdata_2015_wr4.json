@@ -5,12 +5,12 @@
     "description": "einleuchtend e.V. inverter 4 data",
     "language": [
         "en-GB",
-		"de-DE"
+        "de-DE"
     ],
     "keywords": [
         "wr4",
-		"inverter",
-		"einleuchtend"
+        "inverter",
+        "einleuchtend"
     ],
     "publicationDate": null,
     "context": {
@@ -78,7 +78,7 @@
         }
     ],
     "contributors": [
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2020-04-29",
@@ -92,7 +92,7 @@
             "object": "metadata",
             "comment": "Add metadata"
         },
-		{
+        {
             "title": "Matthias Kubicki",
             "email": null,
             "date": "2020-05-06",
@@ -109,19 +109,19 @@
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
-					{
+                    {
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
                         "type": "timestamp without time zone NOT NULL",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
-					{
+                    {
                         "name": "wrnref",
                         "description": "inverter reference number",
                         "type": "varchar(3)",
                         "unit": "text"
                     },
-					{
+                    {
                         "name": "u_pv",
                         "description": "DC PV Voltage",
                         "type": "double precision",
@@ -133,7 +133,7 @@
                         "type": "double precision",
                         "unit": "A"
                     },
-					{
+                    {
                         "name": "p_dc",
                         "description": "DC Power",
                         "type": "double precision",
@@ -235,7 +235,7 @@
                         "type": "serial",
                         "unit": null
                     },
-					{
+                    {
                         "name": "istberechnet",
                         "description": "unknown",
                         "type": "double precision",
