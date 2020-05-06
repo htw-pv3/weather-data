@@ -91,6 +91,13 @@
             "date": "2020-05-04",
             "object": "metadata",
             "comment": "Add metadata"
+        },
+        {
+            "title": "Julian Endres",
+            "email": null,
+            "date": "2020-05-06",
+            "object": "metadata",
+            "comment": "rework resources names and types"
         }
     ],
     "resources": [
@@ -105,97 +112,97 @@
 					{
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
-                        "type": "timestamp",
+                        "type": "timestamp without time zone NOT NULL",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
 					{
-                        "name": "WRNrRef",
+                        "name": "wrnref",
                         "description": "inverter reference number",
-                        "type": "serial",
+                        "type": "varchar(3)",
                         "unit": "text"
                     },
 					{
-                        "name": "U_PV",
+                        "name": "u_pv",
                         "description": "DC PV Voltage",
                         "type": "double precision",
                         "unit": "V"
                     },
                     {
-                        "name": "I_PV",
+                        "name": "i_pv",
                         "description": "DC PV Current",
                         "type": "double precision",
                         "unit": "A"
                     },
                     {
-                        "name": "F",
+                        "name": "f",
                         "description": "unknown; always zero",
-                        "type": "boolean",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "U_AC",
+                        "name": "u_ac",
                         "description": "AC Voltage; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "I_AC",
+                        "name": "i_ac",
                         "description": "AC Current; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "P_AC",
+                        "name": "p_ac",
                         "description": "AC Power",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "W"
                     },
                     {
-                        "name": "E_delta_WR",
+                        "name": "e_delta_wr",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_delta_Z",
+                        "name": "e_delta_z",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_total_WR",
-                        "description": "Cumulative Energy unknown",
-                        "type": "serial",
-                        "unit": "unknown"
-                    },
-                    {
-                        "name": "E_total_Z",
+                        "name": "e_total_wr",
                         "description": "Cumulative Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "eta_WR",
+                        "name": "e_total_z",
+                        "description": "Cumulative Energy unknown",
+                        "type": "double precision",
+                        "unit": "unknown"
+                    },
+                    {
+                        "name": "eta_wr",
                         "description": "Efficiency Inverter",
                         "type": "double precision",
                         "unit": "relative"
                     },
                     {
-                        "name": "T_WR",
+                        "name": "t_wr",
                         "description": "Temperature Inverter; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "T_PV",
+                        "name": "t_pv",
                         "description": "Temperature PV",
                         "type": "double precision",
                         "unit": "°C"
                     },
                     {
-                        "name": "R_iso",
+                        "name": "r_iso",
                         "description": "unknown; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "°C"
                     },
                     {
@@ -211,15 +218,27 @@
                         "unit": null
                     },
                     {
-                        "name": "Status",
+                        "name": "status",
                         "description": "unknown status",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "Fehler",
+                        "name": "fehler",
                         "description": "Error Code",
-                        "type": "serial",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "istberechnet",
+                        "description": "unknown",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "pr",
+                        "description": "unknown",
+                        "type": "double precision",
                         "unit": null
                     }
                 ],
