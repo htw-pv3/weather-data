@@ -133,6 +133,12 @@
                         "type": "double precision",
                         "unit": "A"
                     },
+					{
+                        "name": "p_dc",
+                        "description": "DC Power",
+                        "type": "double precision",
+                        "unit": "W"
+                    },
                     {
                         "name": "f",
                         "description": "unknown; always zero",
