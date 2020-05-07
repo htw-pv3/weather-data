@@ -120,6 +120,20 @@ COMMENT ON TABLE pv3.htw_weatherdata_2015 IS '{
             "date": "2020-05-03",
             "object": "metadata",
             "comment": "Add metadata"
+        },
+		{
+            "title": "Thomas Kalkowski",
+            "email": null,
+            "date": "2020-05-06",
+            "object": "metadata",
+            "comment": "Corrected some types and cahnged all names to lowercase"
+        },
+		{
+            "title": "Kilian Helfenbein",
+            "email": null,
+            "date": "2020-05-07",
+            "object": "metadata",
+            "comment": "Minor fixes in Resources"
         }
     ],
     "resources": [
@@ -134,71 +148,71 @@ COMMENT ON TABLE pv3.htw_weatherdata_2015 IS '{
 					{
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
-                        "type": "timestamp",
+                        "type": "timestamp without time zone NOT NULL",
                         "unit": "YYYY-MM-DD HH:MM:SS"
 					},
                     {
-                        "name": "G_hor_CMP6",
+                        "name": "g_hor_cmp6",
                         "description": "global irradiance horizontal CMP6 Pyranometer",
-                        "type": "serial",
+                        "type": "integer",
                         "unit": "W/m^2"
                     },
                     {
-                        "name": "G_hor_Si",
+                        "name": "g_hor_si",
                         "description": "global irradiance horizontal SI-Pyranometer",
                         "type": "double precision",
                         "unit": "W/m^2"
                     },
                     {
-                        "name": "G_gen_CMP11",
+                        "name": "g_gen_cmp11",
                         "description": "global irradiance sloped south 35° CMP11 Pyranometer",
                         "type": "double precision",
                         "unit": "W/m^2"
                     },
                     {
-                        "name": "G_gen_Si",
+                        "name": "g_gen_si",
                         "description": "global irradiance sloped south 35° SI-Pyranometer",
-                        "type": "serial",
+                        "type": "integer",
                         "unit": "W/m^2"
                     },
                     {
-                        "name": "Ev_Beleuchtung",
+                        "name": "ev_beleuchtung",
                         "description": "unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "v_Wind",
+                        "name": "v_wind",
                         "description": "Wind speed",
                         "type": "double precision",
                         "unit": "m/s"
                     },
                     {
-                        "name": "d_Wind",
+                        "name": "d_wind",
                         "description": "Wind direction",
-                        "type": "serial",
+                        "type": "integer",
                         "unit": "°"
                     },
                     {
-                        "name": "T_Luft",
+                        "name": "t_luft",
                         "description": "Ambient temperature",
                         "type": "double precision",
                         "unit": "°C"
                     },
                     {
-                        "name": "h_Luft",
+                        "name": "h_luft",
                         "description": "Relative Humidity",
                         "type": "double precision",
                         "unit": "%"
                     },
                     {
-                        "name": "p_Luft",
+                        "name": "p_luft",
                         "description": "Atmospheric pressure",
                         "type": "double precision",
                         "unit": "hPa"
                     },
                     {
-                        "name": "i_Niederschlag",
+                        "name": "i_niederschlag",
                         "description": "Precipitation",
                         "type": "double precision",
                         "unit": "unknown"
@@ -382,6 +396,20 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
             "date": "2020-05-04",
             "object": "metadata",
             "comment": "Add metadata"
+        },
+        {
+            "title": "Julian Endres",
+            "email": null,
+            "date": "2020-05-06",
+            "object": "metadata",
+            "comment": "rework resources names and types"
+        },
+        {
+            "title": "Kilian Helfenbein",
+            "email": null,
+            "date": "2020-05-07",
+            "object": "metadata",
+            "comment": "resources added p_dc"
         }
     ],
     "resources": [
@@ -396,97 +424,103 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
 					{
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
-                        "type": "timestamp",
+                        "type": "timestamp without time zone NOT NULL",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
 					{
-                        "name": "WRNrRef",
+                        "name": "wrnref",
                         "description": "inverter reference number",
-                        "type": "serial",
+                        "type": "varchar(3)",
                         "unit": "text"
                     },
 					{
-                        "name": "U_PV",
+                        "name": "u_pv",
                         "description": "DC PV Voltage",
                         "type": "double precision",
                         "unit": "V"
                     },
                     {
-                        "name": "I_PV",
+                        "name": "i_pv",
                         "description": "DC PV Current",
                         "type": "double precision",
                         "unit": "A"
                     },
                     {
-                        "name": "F",
-                        "description": "unknown; always zero",
-                        "type": "boolean",
-                        "unit": null
-                    },
-                    {
-                        "name": "U_AC",
-                        "description": "AC Voltage; always zero",
-                        "type": "serial",
-                        "unit": null
-                    },
-                    {
-                        "name": "I_AC",
-                        "description": "AC Current; always zero",
-                        "type": "serial",
-                        "unit": null
-                    },
-                    {
-                        "name": "P_AC",
-                        "description": "AC Power",
-                        "type": "serial",
+                        "name": "p_dc",
+                        "description": "DC PV Power",
+                        "type": "double precision",
                         "unit": "W"
                     },
                     {
-                        "name": "E_delta_WR",
+                        "name": "f",
+                        "description": "unknown; always zero",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "u_ac",
+                        "description": "AC Voltage; always zero",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "i_ac",
+                        "description": "AC Current; always zero",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "p_ac",
+                        "description": "AC Power",
+                        "type": "double precision",
+                        "unit": "W"
+                    },
+                    {
+                        "name": "e_delta_wr",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_delta_Z",
+                        "name": "e_delta_z",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_total_WR",
-                        "description": "Cumulative Energy unknown",
-                        "type": "serial",
-                        "unit": "unknown"
-                    },
-                    {
-                        "name": "E_total_Z",
+                        "name": "e_total_wr",
                         "description": "Cumulative Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "eta_WR",
+                        "name": "e_total_z",
+                        "description": "Cumulative Energy unknown",
+                        "type": "double precision",
+                        "unit": "unknown"
+                    },
+                    {
+                        "name": "eta_wr",
                         "description": "Efficiency Inverter",
                         "type": "double precision",
                         "unit": "relative"
                     },
                     {
-                        "name": "T_WR",
+                        "name": "t_wr",
                         "description": "Temperature Inverter; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "T_PV",
+                        "name": "t_pv",
                         "description": "Temperature PV",
                         "type": "double precision",
                         "unit": "°C"
                     },
                     {
-                        "name": "R_iso",
+                        "name": "r_iso",
                         "description": "unknown; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "°C"
                     },
                     {
@@ -502,15 +536,27 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
                         "unit": null
                     },
                     {
-                        "name": "Status",
+                        "name": "status",
                         "description": "unknown status",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "Fehler",
+                        "name": "fehler",
                         "description": "Error Code",
-                        "type": "serial",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "istberechnet",
+                        "description": "unknown",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "pr",
+                        "description": "unknown",
+                        "type": "double precision",
                         "unit": null
                     }
                 ],
@@ -692,6 +738,13 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
             "date": "2020-05-04",
             "object": "metadata",
             "comment": "Add metadata"
+        },
+        {
+            "title": "Kilian Helfenbein",
+            "email": null,
+            "date": "2020-05-07",
+            "object": "metadata",
+            "comment": "fixed recources"
         }
     ],
     "resources": [
@@ -706,97 +759,103 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
 					{
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
-                        "type": "timestamp",
+                        "type": "timestamp without time zone NOT NULL",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
 					{
-                        "name": "WRNrRef",
+                        "name": "wrnref",
                         "description": "inverter reference number",
-                        "type": "serial",
+                        "type": "varchar(3)",
                         "unit": "text"
                     },
 					{
-                        "name": "U_PV",
+                        "name": "u_pv",
                         "description": "DC PV Voltage",
                         "type": "double precision",
                         "unit": "V"
                     },
                     {
-                        "name": "I_PV",
+                        "name": "i_pv",
                         "description": "DC PV Current",
                         "type": "double precision",
                         "unit": "A"
                     },
                     {
-                        "name": "F",
-                        "description": "unknown; always zero",
-                        "type": "boolean",
-                        "unit": null
-                    },
-                    {
-                        "name": "U_AC",
-                        "description": "AC Voltage; always zero",
-                        "type": "serial",
-                        "unit": null
-                    },
-                    {
-                        "name": "I_AC",
-                        "description": "AC Current; always zero",
-                        "type": "serial",
-                        "unit": null
-                    },
-                    {
-                        "name": "P_AC",
-                        "description": "AC Power",
-                        "type": "serial",
+                        "name": "p_dc",
+                        "description": "DC PV Power",
+                        "type": "double precision",
                         "unit": "W"
                     },
                     {
-                        "name": "E_delta_WR",
+                        "name": "f",
+                        "description": "unknown; always zero",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "u_ac",
+                        "description": "AC Voltage; always zero",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "i_ac",
+                        "description": "AC Current; always zero",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "p_ac",
+                        "description": "AC Power",
+                        "type": "double precision",
+                        "unit": "W"
+                    },
+                    {
+                        "name": "e_delta_wr",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_delta_Z",
+                        "name": "e_delta_z",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_total_WR",
+                        "name": "e_total_wr",
                         "description": "Cumulative Energy unknown",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_total_Z",
+                        "name": "e_total_z",
                         "description": "Cumulative Energy unknown",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "eta_WR",
+                        "name": "eta_wr",
                         "description": "Efficiency Inverter",
                         "type": "double precision",
                         "unit": "relative"
                     },
                     {
-                        "name": "T_WR",
+                        "name": "t_wr",
                         "description": "Temperature Inverter; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "T_PV",
+                        "name": "t_pv",
                         "description": "Temperature PV",
                         "type": "double precision",
                         "unit": "°C"
                     },
                     {
-                        "name": "R_iso",
+                        "name": "r_iso",
                         "description": "unknown; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "°C"
                     },
                     {
@@ -812,15 +871,27 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
                         "unit": null
                     },
                     {
-                        "name": "Status",
+                        "name": "status",
                         "description": "unknown status",
                         "type": "serial",
                         "unit": null
                     },
                     {
-                        "name": "Fehler",
+                        "name": "fehler",
                         "description": "Error Code",
-                        "type": "serial",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "istberechnet",
+                        "description": "unknown; is calculated",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "pr",
+                        "description": "unknown; is calculated",
+                        "type": "double precision",
                         "unit": null
                     }
                 ],
@@ -1002,6 +1073,13 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
             "date": "2020-05-04",
             "object": "metadata",
             "comment": "Add metadata"
+        },
+        {
+            "title": "Kilian Helfenbein",
+            "email": null,
+            "date": "2020-05-07",
+            "object": "metadata",
+            "comment": "fixed recources"
         }
     ],
     "resources": [
@@ -1016,97 +1094,103 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
 					{
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
-                        "type": "timestamp",
+                        "type": "timestamp without time zone NOT NULL",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
 					{
-                        "name": "WRNrRef",
+                        "name": "wrnref",
                         "description": "inverter reference number",
-                        "type": "serial",
+                        "type": "varchar(3)",
                         "unit": "text"
                     },
 					{
-                        "name": "U_PV",
+                        "name": "u_pv",
                         "description": "DC PV Voltage",
                         "type": "double precision",
                         "unit": "V"
                     },
                     {
-                        "name": "I_PV",
+                        "name": "i_pv",
                         "description": "DC PV Current",
                         "type": "double precision",
                         "unit": "A"
                     },
                     {
-                        "name": "F",
-                        "description": "unknown; always zero",
-                        "type": "boolean",
-                        "unit": null
-                    },
-                    {
-                        "name": "U_AC",
-                        "description": "AC Voltage; always zero",
-                        "type": "serial",
-                        "unit": null
-                    },
-                    {
-                        "name": "I_AC",
-                        "description": "AC Current; always zero",
-                        "type": "serial",
-                        "unit": null
-                    },
-                    {
-                        "name": "P_AC",
-                        "description": "AC Power",
-                        "type": "serial",
+                        "name": "p_dc",
+                        "description": "DC PV Power",
+                        "type": "double precision",
                         "unit": "W"
                     },
                     {
-                        "name": "E_delta_WR",
+                        "name": "f",
+                        "description": "unknown; always zero",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "u_ac",
+                        "description": "AC Voltage; always zero",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "i_ac",
+                        "description": "AC Current; always zero",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "p_ac",
+                        "description": "AC Power",
+                        "type": "double precision",
+                        "unit": "W"
+                    },
+                    {
+                        "name": "e_delta_wr",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_delta_Z",
+                        "name": "e_delta_z",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_total_WR",
+                        "name": "e_total_wr",
                         "description": "Cumulative Energy unknown",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_total_Z",
+                        "name": "e_total_z",
                         "description": "Cumulative Energy unknown",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "eta_WR",
+                        "name": "eta_wr",
                         "description": "Efficiency Inverter",
                         "type": "double precision",
                         "unit": "relative"
                     },
                     {
-                        "name": "T_WR",
+                        "name": "t_wr",
                         "description": "Temperature Inverter; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "T_PV",
+                        "name": "t_pv",
                         "description": "Temperature PV",
                         "type": "double precision",
                         "unit": "°C"
                     },
                     {
-                        "name": "R_iso",
+                        "name": "r_iso",
                         "description": "unknown; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "°C"
                     },
                     {
@@ -1122,15 +1206,27 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
                         "unit": null
                     },
                     {
-                        "name": "Status",
+                        "name": "status",
                         "description": "unknown status",
                         "type": "serial",
                         "unit": null
                     },
                     {
-                        "name": "Fehler",
+                        "name": "fehler",
                         "description": "Error Code",
-                        "type": "serial",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "istberechnet",
+                        "description": "unknown; is calculated",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "pr",
+                        "description": "unknown; is calculated",
+                        "type": "double precision",
                         "unit": null
                     }
                 ],
@@ -1312,6 +1408,13 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
             "date": "2020-05-04",
             "object": "metadata",
             "comment": "Add metadata"
+        },
+		{
+            "title": "Matthias Kubicki",
+            "email": null,
+            "date": "2020-05-06",
+            "object": "metadata",
+            "comment": "rework resources names and types"
         }
     ],
     "resources": [
@@ -1326,95 +1429,101 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
 					{
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
-                        "type": "timestamp",
+                        "type": "timestamp without time zone NOT NULL",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
 					{
-                        "name": "WRNrRef",
+                        "name": "wrnref",
                         "description": "inverter reference number",
-                        "type": "serial",
+                        "type": "varchar(3)",
                         "unit": "text"
                     },
 					{
-                        "name": "U_PV",
+                        "name": "u_pv",
                         "description": "DC PV Voltage",
                         "type": "double precision",
                         "unit": "V"
                     },
                     {
-                        "name": "I_PV",
+                        "name": "i_pv",
                         "description": "DC PV Current",
                         "type": "double precision",
                         "unit": "A"
                     },
+					{
+                        "name": "p_dc",
+                        "description": "DC Power",
+                        "type": "double precision",
+                        "unit": "W"
+                    },
                     {
-                        "name": "F",
+                        "name": "f",
                         "description": "unknown; always zero",
                         "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "U_AC",
+                        "name": "u_ac",
                         "description": "AC Voltage",
                         "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "I_AC",
+                        "name": "i_ac",
                         "description": "AC Current",
                         "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "P_AC",
+                        "name": "p_ac",
                         "description": "AC Power",
                         "type": "double precision",
                         "unit": "W"
                     },
                     {
-                        "name": "E_delta_WR",
+                        "name": "e_delta_wr",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_delta_Z",
+                        "name": "e_delta_z",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_total_WR",
+                        "name": "e_total_wr",
                         "description": "Cumulative Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_total_Z",
+                        "name": "e_total_z",
                         "description": "Cumulative Energy unknown",
                         "type": "serial",
                         "unit": "unknown"
                     },
                     {
-                        "name": "eta_WR",
+                        "name": "eta_wr",
                         "description": "Efficiency Inverter",
                         "type": "double precision",
                         "unit": "relative"
                     },
                     {
-                        "name": "T_WR",
+                        "name": "t_wr",
                         "description": "Temperature Inverter",
                         "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "T_PV",
+                        "name": "t_pv",
                         "description": "Temperature PV",
                         "type": "double precision",
                         "unit": "°C"
                     },
                     {
-                        "name": "R_iso",
+                        "name": "r_iso",
                         "description": "unknown; always zero",
                         "type": "serial",
                         "unit": "°C"
@@ -1432,15 +1541,27 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
                         "unit": null
                     },
                     {
-                        "name": "Status",
+                        "name": "status",
                         "description": "unknown status",
                         "type": "serial",
                         "unit": null
                     },
                     {
-                        "name": "Fehler",
+                        "name": "fehler",
                         "description": "Error Code",
                         "type": "serial",
+                        "unit": null
+                    },
+					{
+                        "name": "istberechnet",
+                        "description": "unknown, is calculated",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "pr",
+                        "description": "unknown",
+                        "type": "double precision",
                         "unit": null
                     }
                 ],
@@ -1635,98 +1756,104 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr5 IS '{
                 "fields": [
 					{
                         "name": "timestamp",
-                        "description": "Timestamp without time zone",
+                        "description": "timestamp without time zone NOT NULL",
                         "type": "timestamp",
                         "unit": "YYYY-MM-DD HH:MM:SS"
                     },
 					{
-                        "name": "WRNrRef",
+                        "name": "wrnref",
                         "description": "inverter reference number",
-                        "type": "serial",
+                        "type": "varchar(3)",
                         "unit": "text"
                     },
 					{
-                        "name": "U_PV",
+                        "name": "u_pv",
                         "description": "DC PV Voltage",
                         "type": "double precision",
                         "unit": "V"
                     },
                     {
-                        "name": "I_PV",
+                        "name": "i_pv",
                         "description": "DC PV Current",
                         "type": "double precision",
                         "unit": "A"
                     },
+					{
+                        "name": "p_dc",
+                        "description": "DC Power",
+                        "type": "double precision",
+                        "unit": "W"
+                    },
                     {
-                        "name": "F",
+                        "name": "f",
                         "description": "unknown; always zero",
                         "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "U_AC",
+                        "name": "u_ac",
                         "description": "AC Voltage",
                         "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "I_AC",
+                        "name": "i_ac",
                         "description": "AC Current",
                         "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "P_AC",
+                        "name": "p_ac",
                         "description": "AC Power",
                         "type": "double precision",
                         "unit": "W"
                     },
                     {
-                        "name": "E_delta_WR",
+                        "name": "e_delta_wr",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_delta_Z",
+                        "name": "e_delta_z",
                         "description": "Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_total_WR",
+                        "name": "e_total_wr",
                         "description": "Cumulative Energy unknown",
                         "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "E_total_Z",
+                        "name": "e_total_z",
                         "description": "Cumulative Energy unknown",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "unknown"
                     },
                     {
-                        "name": "eta_WR",
+                        "name": "eta_wr",
                         "description": "Efficiency Inverter",
                         "type": "double precision",
                         "unit": "relative"
                     },
                     {
-                        "name": "T_WR",
+                        "name": "t_wr",
                         "description": "Temperature Inverter",
                         "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "T_PV",
+                        "name": "t_pv",
                         "description": "Temperature PV",
                         "type": "double precision",
                         "unit": "°C"
                     },
                     {
-                        "name": "R_iso",
+                        "name": "r_iso",
                         "description": "unknown; always zero",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": "°C"
                     },
                     {
@@ -1742,17 +1869,30 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr5 IS '{
                         "unit": null
                     },
                     {
-                        "name": "Status",
+                        "name": "status",
                         "description": "unknown status",
-                        "type": "serial",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "Fehler",
+                        "name": "fehler",
                         "description": "Error Code",
-                        "type": "serial",
+                        "type": "double precision",
+                        "unit": null
+				    },
+					{
+                        "name": "istberechnet",
+                        "description": "unknown",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "pr",
+                        "description": "unknown",
+                        "type": "double precision",
                         "unit": null
                     }
+					
                 ],
                 "primaryKey": [
                     "timestamp"
