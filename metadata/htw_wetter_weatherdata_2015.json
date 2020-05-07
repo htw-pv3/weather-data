@@ -96,6 +96,13 @@
             "date": "2020-05-06",
             "object": "metadata",
             "comment": "Corrected some types and cahnged all names to lowercase"
+        },
+		{
+            "title": "Kilian Helfenbein",
+            "email": null,
+            "date": "2020-05-07",
+            "object": "metadata",
+            "comment": "Minor fixes in Resources"
         }
     ],
     "resources": [
@@ -112,67 +119,67 @@
                         "description": "Timestamp without time zone",
                         "type": "timestamp without time zone NOT NULL",
                         "unit": "YYYY-MM-DD HH:MM:SS"
-					}
+					},
                     {
                         "name": "g_hor_cmp6",
                         "description": "global irradiance horizontal CMP6 Pyranometer",
                         "type": "integer",
                         "unit": "W/m^2"
-                    }
+                    },
                     {
                         "name": "g_hor_si",
                         "description": "global irradiance horizontal SI-Pyranometer",
                         "type": "double precision",
                         "unit": "W/m^2"
-                    }
+                    },
                     {
                         "name": "g_gen_cmp11",
                         "description": "global irradiance sloped south 35° CMP11 Pyranometer",
                         "type": "double precision",
                         "unit": "W/m^2"
-                    }
+                    },
                     {
                         "name": "g_gen_si",
                         "description": "global irradiance sloped south 35° SI-Pyranometer",
                         "type": "integer",
                         "unit": "W/m^2"
-                    }
+                    },
                     {
                         "name": "ev_beleuchtung",
                         "description": "unknown",
                         "type": "double precision",
                         "unit": "unknown"
-                    }
+                    },
                     {
                         "name": "v_wind",
                         "description": "Wind speed",
                         "type": "double precision",
                         "unit": "m/s"
-                    }
+                    },
                     {
                         "name": "d_wind",
                         "description": "Wind direction",
                         "type": "integer",
                         "unit": "°"
-                    }
+                    },
                     {
                         "name": "t_luft",
                         "description": "Ambient temperature",
                         "type": "double precision",
                         "unit": "°C"
-                    }
+                    },
                     {
                         "name": "h_luft",
                         "description": "Relative Humidity",
                         "type": "double precision",
                         "unit": "%"
-                    }
+                    },
                     {
                         "name": "p_luft",
                         "description": "Atmospheric pressure",
                         "type": "double precision",
                         "unit": "hPa"
-                    }
+                    },
                     {
                         "name": "i_niederschlag",
                         "description": "Precipitation",
