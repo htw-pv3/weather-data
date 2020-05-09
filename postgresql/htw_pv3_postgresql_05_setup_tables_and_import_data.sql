@@ -1959,43 +1959,172 @@ CREATE TABLE            pv3.time_2015 (
 
 -- Metadata
 COMMENT ON TABLE pv3.time_2015 IS '{
+    "name": "htw_wetter_time_2015",
     "title": "HTW Wetterstation - Timeseries 2015",
+    "id": "",
     "description": "Complete timeseries for the year 2015",
-    "language": [ "eng", "ger" ],
-    "spatial": 
-        {"location": "Berlin",
-        "extent": "none",
-        "resolution": "none"},
-    "temporal": 
-        {"reference_date": "2015",
-        "start": "2015-01-01",
-        "end": "2015-12-31",
-        "resolution": "minute"},
+    "language": [
+        "en-GB",
+        "de-DE"
+    ],
+    "keywords": [
+        ""
+    ],
+    "publicationDate": "",
+    "context": {
+        "homepage": "",
+        "documentation": "",
+        "sourceCode": "",
+        "contact": "",
+        "grantNo": "",
+        "fundingAgency": "",
+        "fundingAgencyLogo": "",
+        "publisherLogo": ""
+    },
+    "spatial": {
+        "location": "Berlin",
+        "extent": null,
+        "resolution": null
+    },
+    "temporal": {
+        "referenceDate": "2015",
+        "timeseries": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "resolution": "1 minute",
+            "alignment": null,
+            "aggregationType": null
+        }
+    },
     "sources": [
-        {"name": "HTW Wetterstation",
-        "description": "Wetterstation der Hochschule für Technik und Wirtschaft Berlin (HTW Berlin)",
-        "url": "http://wetter.htw-berlin.de",
-        "license": "none",
-        "copyright": "© 2017 - wetter.htw-berlin.de"} ],
-    "license": 
-        {"id": "none",
-        "name": "none",
-        "version": "none",
-        "url": "none",
-        "instruction": "none",
-        "copyright": "none"},
+        {
+            "title": "HTW Wetterstation",
+            "description": "Wetterstation der Hochschule für Technik und Wirtschaft Berlin (HTW Berlin)",
+            "path": "http://wetter.htw-berlin.de",
+            "licenses": [
+                {
+                    "name": null,
+                    "title": null,
+                    "path": null,
+                    "instruction": null,
+                    "attribution": "© 2017 - wetter.htw-berlin.de"
+                }
+            ]
+        }
+    ],
+    "licenses": [
+        {
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": null,
+            "attribution": null
+        }
+    ],
     "contributors": [
-        {"name": "Ludwig Hülk", "email": "none", "date": "2016-05-04", "comment": "Download data from webserver"},
-        {"name": "Ludwig Hülk", "email": "none", "date": "2017-06-14", "comment": "Create metadata"},
-        {"name": "Ludwig Hülk", "email": "none", "date": "2018-06-17", "comment": "Update metadata"} ],
+        {
+            "title": "Ludwig Hülk",
+            "email": null,
+            "date": "2016-05-04",
+            "object": "data",
+            "comment": "Download data from webserver"
+        },
+        {
+            "title": "Ludwig Hülk",
+            "email": null,
+            "date": "2017-06-14",
+            "object": "metadata",
+            "comment": "Create metadata"
+        },
+        {
+            "title": "Ludwig Hülk",
+            "email": null,
+            "date": "2018-06-17",
+            "object": "metadata",
+            "comment": "Update metadata v1.3.0"
+        },
+        {
+            "title": "Ludwig Hülk",
+            "email": null,
+            "date": "2020-04-29",
+            "object": "metadata",
+            "comment": "Update metadata v1.4.0"
+        }
+    ],
     "resources": [
-        {"name": "pv3.time_2015",
-        "format": "PostgreSQL",
-        "fields": [
-            {"name": "timestamp", "description": "YYYY-MM-DD hh:mm:ss", "unit": "none"},
-            {"name": "date", "description": "YYYY-MM-DD", "unit": "none"},
-            {"name": "time", "description": "hh:mm:ss", "unit": "none"} ] } ],
-    "metadata_version": "1.3"}';
+        {
+            "profile": "tabular-data-resource",
+            "name": "htw_wetter_time_2015.csv",
+            "path": null,
+            "format": "csv",
+            "encoding": "UTF-8",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "timestamp",
+                        "description": "Minute of the year 2015",
+                        "type": "YYYY-MM-DD hh:mm:ss",
+                        "unit": null
+                    },
+                    {
+                        "name": "date",
+                        "description": "Day of the year 2015",
+                        "type": "YYYY-MM-DD",
+                        "unit": null
+                    }
+                    ,
+                    {
+                        "name": "time",
+                        "description": "Time of the day",
+                        "type": "hh:mm:ss",
+                        "unit": null
+                    }
+                ],
+                "primaryKey": [
+                    "timestamp"
+                ],
+                "foreignKeys": [
+                    {
+                        "fields": [
+                            null
+                        ],
+                        "reference": {
+                            "resource": null,
+                            "fields": [
+                                null
+                            ]
+                        }
+                    }
+                ]
+            },
+            "dialect": {
+                "delimiter": ";",
+                "decimalSeparator": "."
+            }
+        }
+    ],
+    "review": {
+        "path": null,
+        "badge": null
+    },
+    "metaMetadata": {
+        "metadataVersion": "OEP-1.4.0",
+        "metadataLicense": {
+            "name": "CC0-1.0",
+            "title": "Creative Commons Zero v1.0 Universal",
+            "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+        }
+    },
+    "_comment": {
+        "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/organisation/wiki/metadata)",
+        "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+        "units": "Use a space between numbers and units (100 m)",
+        "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+        "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+        "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/wiki)",
+        "null": "If not applicable use (null)"
+    }
+}';
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('MA3','v1','setup','pv3','time_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
@@ -2016,43 +2145,171 @@ CREATE TABLE            pv3.sun_2015 (
 
 -- Metadata
 COMMENT ON TABLE pv3.sun_2015 IS '{
+    "name": "htw_wetter_sun_2015",
     "title": "HTW Wetterstation - Sunrise and Sunset 2015",
+    "id": "",
     "description": "Times of sunrise and sunset times for the year 2015",
-    "language": [ "eng", "ger" ],
-    "spatial": 
-        {"location": "Berlin",
-        "extent": "none",
-        "resolution": "none"},
-    "temporal": 
-        {"reference_date": "2015",
-        "start": "2015-01-01",
-        "end": "2015-12-31",
-        "resolution": "day"},
+    "language": [
+        "en-GB",
+        "de-DE"
+    ],
+    "keywords": [
+        ""
+    ],
+    "publicationDate": "2016-05-04",
+    "context": {
+        "homepage": "",
+        "documentation": "",
+        "sourceCode": "",
+        "contact": "",
+        "grantNo": "",
+        "fundingAgency": "",
+        "fundingAgencyLogo": "",
+        "publisherLogo": ""
+    },
+    "spatial": {
+        "location": "Berlin",
+        "extent": null,
+        "resolution": null
+    },
+    "temporal": {
+        "referenceDate": "2015",
+        "timeseries": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "resolution": "1 day",
+            "alignment": null,
+            "aggregationType": null
+        }
+    },
     "sources": [
-        {"name": "HTW Wetterstation",
-        "description": "Wetterstation der Hochschule für Technik und Wirtschaft Berlin (HTW Berlin)",
-        "url": "http://wetter.htw-berlin.de",
-        "license": "none",
-        "copyright": "© 2017 - wetter.htw-berlin.de"} ],
-    "license": 
-        {"id": "none",
-        "name": "none",
-        "version": "none",
-        "url": "none",
-        "instruction": "none",
-        "copyright": "none"},
+        {
+            "title": "HTW Wetterstation",
+            "description": "Wetterstation der Hochschule für Technik und Wirtschaft Berlin (HTW Berlin)",
+            "path": "http://wetter.htw-berlin.de",
+            "licenses": [
+                {
+                    "name": null,
+                    "title": null,
+                    "path": null,
+                    "instruction": null,
+                    "attribution": "© 2017 - wetter.htw-berlin.de"
+                }
+            ]
+        }
+    ],
+    "licenses": [
+        {
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": null,
+            "attribution": null
+        }
+    ],
     "contributors": [
-        {"name": "Ludwig Hülk", "email": "none", "date": "2016-05-04", "comment": "Download data from webserver"},
-        {"name": "Ludwig Hülk", "email": "none", "date": "2017-06-14", "comment": "Create metadata"},
-        {"name": "Ludwig Hülk", "email": "none", "date": "2018-06-17", "comment": "Update metadata"} ],
+        {
+            "title": "Ludwig Hülk",
+            "email": null,
+            "date": "2016-05-04",
+            "object": "data",
+            "comment": "Download data from webserver"
+        },
+        {
+            "title": "Ludwig Hülk",
+            "email": null,
+            "date": "2017-06-14",
+            "object": "metadata",
+            "comment": "Create metadata"
+        },
+        {
+            "title": "Ludwig Hülk",
+            "email": null,
+            "date": "2018-06-17",
+            "object": "metadata",
+            "comment": "Update metadata v1.3.0"
+        },
+        {
+            "title": "Ludwig Hülk",
+            "email": null,
+            "date": "2020-04-29",
+            "object": "metadata",
+            "comment": "Update metadata v1.4.0"
+        }
+    ],
     "resources": [
-        {"name": "pv3.sun_2015",
-        "format": "PostgreSQL",
-        "fields": [
-            {"name": "date", "description": "DD.MM.YYYY", "unit": "none"},
-            {"name": "sunrise", "description": "hh:mm:ss", "unit": "none"},
-            {"name": "sunset", "description": "hh:mm:ss", "unit": "none"} ] } ],
-    "metadata_version": "1.3"}';
+        {
+            "profile": "tabular-data-resource",
+            "name": "htw_wetter_sun_2015.csv",
+            "path": null,
+            "format": "csv",
+            "encoding": "UTF-8",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "date",
+                        "description": "Day of the year 2015",
+                        "type": "DD.MM.YYYY",
+                        "unit": null
+                    },
+                    {
+                        "name": "sunrise",
+                        "description": "Time of sunrise at location",
+                        "type": "hh:mm:ss",
+                        "unit": null
+                    },
+                    {
+                        "name": "sunset",
+                        "description": "Time of sunset at location",
+                        "type": "hh:mm:ss",
+                        "unit": null
+                    }
+                ],
+                "primaryKey": [
+                    "date"
+                ],
+                "foreignKeys": [
+                    {
+                        "fields": [
+                            null
+                        ],
+                        "reference": {
+                            "resource": null,
+                            "fields": [
+                                null
+                            ]
+                        }
+                    }
+                ]
+            },
+            "dialect": {
+                "delimiter": ";",
+                "decimalSeparator": "."
+            }
+        }
+    ],
+    "review": {
+        "path": null,
+        "badge": null
+    },
+    "metaMetadata": {
+        "metadataVersion": "OEP-1.4.0",
+        "metadataLicense": {
+            "name": "CC0-1.0",
+            "title": "Creative Commons Zero v1.0 Universal",
+            "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+        }
+    },
+    "_comment": {
+        "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/organisation/wiki/metadata)",
+        "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+        "units": "Use a space between numbers and units (100 m)",
+        "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+        "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+        "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/wiki)",
+        "null": "If not applicable use (null)"
+    }
+}';
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('MA3','v1','setup','pv3','sun_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
