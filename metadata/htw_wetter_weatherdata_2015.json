@@ -15,7 +15,7 @@
         "homepage": "https://re-master.htw-berlin.de/",
         "documentation": "Solaranlangen und -kraftwerke (W-PV3)",
         "sourceCode": "https://github.com/htw-pv3/weather-data",
-        "contact": "s0554994@htw-berlin.de",
+        "contact": "ludwig.huelk@rl-institut.de",
         "grantNo": null,
         "fundingAgency": null,
         "fundingAgencyLogo": null,
@@ -38,20 +38,6 @@
     },
     "sources": [
         {
-            "title": "W-PV3 Solaranlagen und -kraftwerke metadata weatherdata",
-            "description": "Meta data for the measurement of the fracture sensors of the experimental facility of einleuchtend e.V. at the HTW Berlin",
-            "path": "https://github.com/htw-pv3/weather-data",
-            "licenses": [
-                {
-                    "name": "AGPL v3",
-                    "title": "GNU Affero General Public License v3.0",
-                    "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-                    "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-                    "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
-                }
-            ]
-        },
-        {
             "title": "wetter.htw-berlin.de",
             "description": "Data",
             "path": "https://wetter.htw-berlin.de/Download",
@@ -60,7 +46,7 @@
                     "name": "unknown",
                     "title": "unknown",
                     "path": "https://wetter.htw-berlin.de/About/Disclaimer",
-                    "instruction": "unknown",
+                    "instruction": "downloads and copies only permitted for private, non-commercial use",
                     "attribution": "© 2020 - wetter.htw-berlin.de"
                 }
             ]
@@ -68,11 +54,11 @@
     ],
     "licenses": [
         {
-            "name": "AGPL v3",
-            "title": "GNU Affero General Public License v3.0",
-            "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-            "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-            "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": "only permitted for private, non-commercial use",
+            "attribution": null
         }
     ],
     "contributors": [
@@ -84,33 +70,19 @@
             "comment": "Create table"
         },
         {
-            "title": "Kilian Helfenbein",
+            "title": "htw-pv3-sose2020",
             "email": null,
-            "date": "2020-05-03",
+            "date": "2020-05-10",
             "object": "metadata",
-            "comment": "Add metadata"
-        },
-		{
-            "title": "Thomas Kalkowski",
-            "email": null,
-            "date": "2020-05-06",
-            "object": "metadata",
-            "comment": "Corrected some types and cahnged all names to lowercase"
-        },
-		{
-            "title": "Kilian Helfenbein",
-            "email": null,
-            "date": "2020-05-07",
-            "object": "metadata",
-            "comment": "Minor fixes in Resources"
+            "comment": "Add Metadata OEMetadata v.1.4 "
         }
     ],
     "resources": [
         {
             "profile": "tabular-data-resource",
-            "name": "pv3.htw_wetter_weatherdata_2015_v140_KH",
-            "path": "https://github.com/htw-pv3/weather-data/tree/MyMetaData/helfenbein_kilian",
-            "format": "PostgreSQL",
+            "name": "htw_wetter_weatherdata_2015.csv",
+            "path": null,
+            "format": "csv.",
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
@@ -206,7 +178,7 @@
             },
             "dialect": {
                 "delimiter": ";",
-                "double precisionSeparator": "."
+                "decimalSeparator": "."
             }
         }
     ],
