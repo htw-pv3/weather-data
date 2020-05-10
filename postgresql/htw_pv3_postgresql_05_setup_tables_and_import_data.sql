@@ -2,7 +2,7 @@
 Setup tables and import data from CSV
 
 Dieses Skript erstellt alle notwendigen Datenbanktabellen und importiert die Daten aus den CSV-Dateien. 
-Der Speicherort des Datenordners "pv3_data_2015" ist 'C:\data\pv3_data_2015\'
+Der Speicherort des Datenordners "pv3_data_2015" ist '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015'
 
 __copyright__   = "© Reiner Lemoine Institut"
 __license__     = "Creative Commons Zero v1.0 Universal (CC0-1.0)"
@@ -46,7 +46,7 @@ COMMENT ON TABLE pv3.htw_weatherdata_2015 IS '{
         "homepage": "https://re-master.htw-berlin.de/",
         "documentation": "Solaranlangen und -kraftwerke (W-PV3)",
         "sourceCode": "https://github.com/htw-pv3/weather-data",
-        "contact": "s0554994@htw-berlin.de",
+        "contact": "ludwig.huelk@rl-institut.de",
         "grantNo": null,
         "fundingAgency": null,
         "fundingAgencyLogo": null,
@@ -69,20 +69,6 @@ COMMENT ON TABLE pv3.htw_weatherdata_2015 IS '{
     },
     "sources": [
         {
-            "title": "W-PV3 Solaranlagen und -kraftwerke metadata weatherdata",
-            "description": "Meta data for the measurement of the fracture sensors of the experimental facility of einleuchtend e.V. at the HTW Berlin",
-            "path": "https://github.com/htw-pv3/weather-data",
-            "licenses": [
-                {
-                    "name": "AGPL v3",
-                    "title": "GNU Affero General Public License v3.0",
-                    "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-                    "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-                    "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
-                }
-            ]
-        },
-        {
             "title": "wetter.htw-berlin.de",
             "description": "Data",
             "path": "https://wetter.htw-berlin.de/Download",
@@ -91,7 +77,7 @@ COMMENT ON TABLE pv3.htw_weatherdata_2015 IS '{
                     "name": "unknown",
                     "title": "unknown",
                     "path": "https://wetter.htw-berlin.de/About/Disclaimer",
-                    "instruction": "unknown",
+                    "instruction": "downloads and copies only permitted for private, non-commercial use",
                     "attribution": "© 2020 - wetter.htw-berlin.de"
                 }
             ]
@@ -99,11 +85,11 @@ COMMENT ON TABLE pv3.htw_weatherdata_2015 IS '{
     ],
     "licenses": [
         {
-            "name": "AGPL v3",
-            "title": "GNU Affero General Public License v3.0",
-            "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-            "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-            "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": "only permitted for private, non-commercial use",
+            "attribution": null
         }
     ],
     "contributors": [
@@ -115,33 +101,19 @@ COMMENT ON TABLE pv3.htw_weatherdata_2015 IS '{
             "comment": "Create table"
         },
         {
-            "title": "Kilian Helfenbein",
+            "title": "htw-pv3-sose2020",
             "email": null,
-            "date": "2020-05-03",
+            "date": "2020-05-10",
             "object": "metadata",
-            "comment": "Add metadata"
-        },
-		{
-            "title": "Thomas Kalkowski",
-            "email": null,
-            "date": "2020-05-06",
-            "object": "metadata",
-            "comment": "Corrected some types and cahnged all names to lowercase"
-        },
-		{
-            "title": "Kilian Helfenbein",
-            "email": null,
-            "date": "2020-05-07",
-            "object": "metadata",
-            "comment": "Minor fixes in Resources"
+            "comment": "Add Metadata OEMetadata v.1.4 "
         }
     ],
     "resources": [
         {
             "profile": "tabular-data-resource",
-            "name": "pv3.htw_wetter_weatherdata_2015_v140_KH",
-            "path": "https://github.com/htw-pv3/weather-data/tree/MyMetaData/helfenbein_kilian",
-            "format": "PostgreSQL",
+            "name": "htw_wetter_weatherdata_2015.csv",
+            "path": null,
+            "format": "csv.",
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
@@ -237,7 +209,7 @@ COMMENT ON TABLE pv3.htw_weatherdata_2015 IS '{
             },
             "dialect": {
                 "delimiter": ";",
-                "double precisionSeparator": "."
+                "decimalSeparator": "."
             }
         }
     ],
@@ -265,13 +237,13 @@ COMMENT ON TABLE pv3.htw_weatherdata_2015 IS '{
 }';
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','setup','pv3','htw_weatherdata_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
+SELECT db_log('PV3','v1','setup','pv3','htw_weatherdata_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.htw_weatherdata_2015 FROM 'C:\data\pv3_data_2015\htw_wetter_weatherdata_2015.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.htw_weatherdata_2015 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015htw_wetter_weatherdata_2015.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','import','pv3','htw_weatherdata_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
+SELECT db_log('PV3','v1','import','pv3','htw_weatherdata_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
 
 
 -- WR 1
@@ -304,10 +276,10 @@ CREATE TABLE            pv3.einleuchtend_wrdata_2015_wr1 (
 
 -- Metadata
 COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
-    "name": "einleuchtend_wrdata_2015_wr1_v140_KH",
-    "title": "einleuchtend WR 1 data",
+    "name": "einleuchtend_wrdata_2015_wr1",
+    "title": "SonnJa! einleuchtend e.V. WR 1 data 2015",
     "id": null,
-    "description": "einleuchtend e.V. inverter 1 data",
+    "description": "Data of the measurement series of inverter 1 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
     "language": [
         "en-GB",
 		"de-DE"
@@ -322,7 +294,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
         "homepage": "https://re-master.htw-berlin.de/",
         "documentation": "Solaranlangen und -kraftwerke (W-PV3)",
         "sourceCode": "https://github.com/htw-pv3/weather-data",
-        "contact": "s0554994@htw-berlin.de",
+        "contact": "ludwig.huelk@rl-institut.de",
         "grantNo": null,
         "fundingAgency": null,
         "fundingAgencyLogo": null,
@@ -345,23 +317,9 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
     },
     "sources": [
         {
-            "title": "W-PV3 Solaranlagen und -kraftwerke metadata weatherdata",
-            "description": "Metadata for the measurement series of inverter 1 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
-            "path": "https://github.com/htw-pv3/weather-data",
-            "licenses": [
-                {
-                    "name": "AGPL v3",
-                    "title": "GNU Affero General Public License v3.0",
-                    "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-                    "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-                    "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
-                }
-            ]
-        },
-        {
             "title": "SonnJa! einleuchtend e.V.",
-            "description": "Data",
-            "path": "http://sonnja.einleuchtend.org/",
+            "description": "Website of the association for the promotion of teaching, science and research in the field of renewable energies",
+            "path": "http://einleuchtend.org/sonn-ja/download-und-visualisierung/",
             "licenses": [
                 {
                     "name": "unknown",
@@ -375,12 +333,13 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
     ],
     "licenses": [
         {
-            "name": "AGPL v3",
-            "title": "GNU Affero General Public License v3.0",
-            "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-            "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-            "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": null,
+            "attribution": null
         }
+
     ],
     "contributors": [
 		{
@@ -391,33 +350,20 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
             "comment": "Create table"
         },
         {
-            "title": "Kilian Helfenbein",
+            "title": "htw-pv3-sose2020",
             "email": null,
-            "date": "2020-05-04",
+            "date": "2020-05-10",
             "object": "metadata",
-            "comment": "Add metadata"
+            "comment": "Add Metadata OEMetadata v.1.4 "
         },
-        {
-            "title": "Julian Endres",
-            "email": null,
-            "date": "2020-05-06",
-            "object": "metadata",
-            "comment": "rework resources names and types"
-        },
-        {
-            "title": "Kilian Helfenbein",
-            "email": null,
-            "date": "2020-05-07",
-            "object": "metadata",
-            "comment": "resources added p_dc"
-        }
+
     ],
     "resources": [
         {
             "profile": "tabular-data-resource",
-            "name": "pv3.einleuchtend_wrdata_2015_wr1_v140_KH",
-            "path": "https://github.com/htw-pv3/weather-data/tree/MyMetaData/helfenbein_kilian",
-            "format": "PostgreSQL",
+            "name": "einleuchtend_wrdata_2015_wr1.csv",
+            "path": "https://github.com/htw-pv3/weather-data",
+            "format": "csv",
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
@@ -579,7 +525,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
             },
             "dialect": {
                 "delimiter": ";",
-                "double precisionSeparator": "."
+                "decimalSeparator": "."
             }
         }
     ],
@@ -607,13 +553,13 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
 }';
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','setup','pv3','einleuchtend_wrdata_2015_wr1','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
+SELECT db_log('PV3','v1','setup','pv3','einleuchtend_wrdata_2015_wr1','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.einleuchtend_wrdata_2015_wr1 FROM 'C:\data\pv3_data_2015\einleuchtend_wrdata_2015_wr1.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.einleuchtend_wrdata_2015_wr1 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015einleuchtend_wrdata_2015_wr1.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','import','pv3','einleuchtend_wrdata_2015_wr1','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
+SELECT db_log('PV3','v1','import','pv3','einleuchtend_wrdata_2015_wr1','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
 
 
 -- WR 2
@@ -646,10 +592,10 @@ CREATE TABLE            pv3.einleuchtend_wrdata_2015_wr2 (
 
 -- Metadata
 COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
-    "name": "einleuchtend_wrdata_2015_wr2_v140_KH",
-    "title": "einleuchtend WR 2 data",
+    "name": "einleuchtend_wrdata_2015_wr2",
+    "title": "SonnJa! einleuchtend e.V. WR 2 data 2015",
     "id": null,
-    "description": "einleuchtend e.V. inverter 2 data",
+    "description": "Data for the measurement series of inverter 2 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
     "language": [
         "en-GB",
 		"de-DE"
@@ -664,7 +610,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
         "homepage": "https://re-master.htw-berlin.de/",
         "documentation": "Solaranlangen und -kraftwerke (W-PV3)",
         "sourceCode": "https://github.com/htw-pv3/weather-data",
-        "contact": "s0554994@htw-berlin.de",
+        "contact": "ludwig.huelk@rl-institut.de",
         "grantNo": null,
         "fundingAgency": null,
         "fundingAgencyLogo": null,
@@ -687,23 +633,9 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
     },
     "sources": [
         {
-            "title": "W-PV3 Solaranlagen und -kraftwerke metadata weatherdata",
-            "description": "Metadata for the measurement series of inverter 1 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
-            "path": "https://github.com/htw-pv3/weather-data",
-            "licenses": [
-                {
-                    "name": "AGPL v3",
-                    "title": "GNU Affero General Public License v3.0",
-                    "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-                    "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-                    "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
-                }
-            ]
-        },
-        {
             "title": "SonnJa! einleuchtend e.V.",
-            "description": "Data",
-            "path": "http://sonnja.einleuchtend.org/",
+            "description": "Website of the association for the promotion of teaching, science and research in the field of renewable energies",
+            "path": "http://einleuchtend.org/sonn-ja/download-und-visualisierung/",
             "licenses": [
                 {
                     "name": "unknown",
@@ -717,11 +649,11 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
     ],
     "licenses": [
         {
-            "name": "AGPL v3",
-            "title": "GNU Affero General Public License v3.0",
-            "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-            "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-            "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": null,
+            "attribution": null
         }
     ],
     "contributors": [
@@ -733,26 +665,19 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
             "comment": "Create table"
         },
         {
-            "title": "Kilian Helfenbein",
+            "title": "htw-pv3-sose2020",
             "email": null,
-            "date": "2020-05-04",
+            "date": "2020-05-10",
             "object": "metadata",
-            "comment": "Add metadata"
-        },
-        {
-            "title": "Kilian Helfenbein",
-            "email": null,
-            "date": "2020-05-07",
-            "object": "metadata",
-            "comment": "fixed recources"
+            "comment": "Add Metadata OEMetadata v.1.4 "
         }
     ],
     "resources": [
         {
             "profile": "tabular-data-resource",
-            "name": "pv3.einleuchtend_wrdata_2015_wr2_v140_KH",
-            "path": "https://github.com/htw-pv3/weather-data/tree/MyMetaData/helfenbein_kilian",
-            "format": "PostgreSQL",
+            "name": "einleuchtend_wrdata_2015_wr2.csv",
+            "path": null,
+            "format": "csv",
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
@@ -914,7 +839,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
             },
             "dialect": {
                 "delimiter": ";",
-                "double precisionSeparator": "."
+                "decimalSeparator": "."
             }
         }
     ],
@@ -942,13 +867,13 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
 }';
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','setup','pv3','einleuchtend_wrdata_2015_wr2','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
+SELECT db_log('PV3','v1','setup','pv3','einleuchtend_wrdata_2015_wr2','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.einleuchtend_wrdata_2015_wr2 FROM 'C:\data\pv3_data_2015\einleuchtend_wrdata_2015_wr2.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.einleuchtend_wrdata_2015_wr2 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015einleuchtend_wrdata_2015_wr2.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','import','pv3','einleuchtend_wrdata_2015_wr2','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
+SELECT db_log('PV3','v1','import','pv3','einleuchtend_wrdata_2015_wr2','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
 
 
 -- WR 3
@@ -981,10 +906,10 @@ CREATE TABLE            pv3.einleuchtend_wrdata_2015_wr3 (
 
 -- Metadata
 COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
-    "name": "einleuchtend_wrdata_2015_wr3_v140_KH",
-    "title": "einleuchtend WR 3 data",
+    "name": "einleuchtend_wrdata_2015_wr3",
+    "title": "SonnJa! einleuchtend e.V. WR 3 data 2015",
     "id": null,
-    "description": "einleuchtend e.V. inverter 3 data",
+    "description": "Data for the measurement series of inverter 3 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
     "language": [
         "en-GB",
 		"de-DE"
@@ -999,7 +924,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
         "homepage": "https://re-master.htw-berlin.de/",
         "documentation": "Solaranlangen und -kraftwerke (W-PV3)",
         "sourceCode": "https://github.com/htw-pv3/weather-data",
-        "contact": "s0554994@htw-berlin.de",
+        "contact": "ludwig.huelk@rl-institut.de",
         "grantNo": null,
         "fundingAgency": null,
         "fundingAgencyLogo": null,
@@ -1022,23 +947,9 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
     },
     "sources": [
         {
-            "title": "W-PV3 Solaranlagen und -kraftwerke metadata weatherdata",
-            "description": "Metadata for the measurement series of inverter 1 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
-            "path": "https://github.com/htw-pv3/weather-data",
-            "licenses": [
-                {
-                    "name": "AGPL v3",
-                    "title": "GNU Affero General Public License v3.0",
-                    "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-                    "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-                    "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
-                }
-            ]
-        },
-        {
             "title": "SonnJa! einleuchtend e.V.",
-            "description": "Data",
-            "path": "http://sonnja.einleuchtend.org/",
+            "description": "Website of the association for the promotion of teaching, science and research in the field of renewable energies",
+            "path": "http://einleuchtend.org/sonn-ja/download-und-visualisierung/",
             "licenses": [
                 {
                     "name": "unknown",
@@ -1052,11 +963,11 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
     ],
     "licenses": [
         {
-            "name": "AGPL v3",
-            "title": "GNU Affero General Public License v3.0",
-            "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-            "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-            "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": null,
+            "attribution": null
         }
     ],
     "contributors": [
@@ -1068,26 +979,19 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
             "comment": "Create table"
         },
         {
-            "title": "Kilian Helfenbein",
+            "title": "htw-pv3-sose2020",
             "email": null,
-            "date": "2020-05-04",
+            "date": "2020-05-10",
             "object": "metadata",
-            "comment": "Add metadata"
-        },
-        {
-            "title": "Kilian Helfenbein",
-            "email": null,
-            "date": "2020-05-07",
-            "object": "metadata",
-            "comment": "fixed recources"
+            "comment": "Add Metadata OEMetadata v.1.4 "
         }
     ],
     "resources": [
         {
             "profile": "tabular-data-resource",
-            "name": "pv3.einleuchtend_wrdata_2015_wr3_v140_KH",
-            "path": "https://github.com/htw-pv3/weather-data/tree/MyMetaData/helfenbein_kilian",
-            "format": "PostgreSQL",
+            "name": "einleuchtend_wrdata_2015_wr3.csv",
+            "path": null,
+            "format": "csv",
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
@@ -1249,7 +1153,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
             },
             "dialect": {
                 "delimiter": ";",
-                "double precisionSeparator": "."
+                "decimalSeparator": "."
             }
         }
     ],
@@ -1277,13 +1181,13 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
 }';
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','setup','pv3','einleuchtend_wrdata_2015_wr3','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
+SELECT db_log('PV3','v1','setup','pv3','einleuchtend_wrdata_2015_wr3','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.einleuchtend_wrdata_2015_wr3 FROM 'C:\data\pv3_data_2015\einleuchtend_wrdata_2015_wr3.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.einleuchtend_wrdata_2015_wr3 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015einleuchtend_wrdata_2015_wr3.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','import','pv3','einleuchtend_wrdata_2015_wr3','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
+SELECT db_log('PV3','v1','import','pv3','einleuchtend_wrdata_2015_wr3','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
 
 
 -- WR 4
@@ -1316,10 +1220,10 @@ CREATE TABLE            pv3.einleuchtend_wrdata_2015_wr4 (
 
 -- Metadata
 COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
-    "name": "einleuchtend_wrdata_2015_wr4_v140_KH",
-    "title": "einleuchtend WR 4 data",
+    "name": "einleuchtend_wrdata_2015_wr4",
+    "title": "SonnJa! einleuchtend e.V. WR 4 data 2015",
     "id": null,
-    "description": "einleuchtend e.V. inverter 4 data",
+    "description": "Data for the measurement series of inverter 4 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
     "language": [
         "en-GB",
 		"de-DE"
@@ -1334,7 +1238,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
         "homepage": "https://re-master.htw-berlin.de/",
         "documentation": "Solaranlangen und -kraftwerke (W-PV3)",
         "sourceCode": "https://github.com/htw-pv3/weather-data",
-        "contact": "s0554994@htw-berlin.de",
+        "contact": "ludwig.huelk@rl-institut.de",
         "grantNo": null,
         "fundingAgency": null,
         "fundingAgencyLogo": null,
@@ -1357,23 +1261,9 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
     },
     "sources": [
         {
-            "title": "W-PV3 Solaranlagen und -kraftwerke metadata weatherdata",
-            "description": "Metadata for the measurement series of inverter 1 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
-            "path": "https://github.com/htw-pv3/weather-data",
-            "licenses": [
-                {
-                    "name": "AGPL v3",
-                    "title": "GNU Affero General Public License v3.0",
-                    "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-                    "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-                    "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
-                }
-            ]
-        },
-        {
             "title": "SonnJa! einleuchtend e.V.",
-            "description": "Data",
-            "path": "http://sonnja.einleuchtend.org/",
+            "description": "Website of the association for the promotion of teaching, science and research in the field of renewable energies",
+            "path": "http://einleuchtend.org/sonn-ja/download-und-visualisierung/",
             "licenses": [
                 {
                     "name": "unknown",
@@ -1387,11 +1277,11 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
     ],
     "licenses": [
         {
-            "name": "AGPL v3",
-            "title": "GNU Affero General Public License v3.0",
-            "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-            "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-            "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": null,
+            "attribution": null
         }
     ],
     "contributors": [
@@ -1403,26 +1293,19 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
             "comment": "Create table"
         },
         {
-            "title": "Kilian Helfenbein",
+            "title": "htw-pv3-sose2020",
             "email": null,
-            "date": "2020-05-04",
+            "date": "2020-05-10",
             "object": "metadata",
-            "comment": "Add metadata"
-        },
-		{
-            "title": "Matthias Kubicki",
-            "email": null,
-            "date": "2020-05-06",
-            "object": "metadata",
-            "comment": "rework resources names and types"
+            "comment": "Add Metadata OEMetadata v.1.4 "
         }
     ],
     "resources": [
         {
             "profile": "tabular-data-resource",
-            "name": "pv3.einleuchtend_wrdata_2015_wr4_v140_KH",
-            "path": "https://github.com/htw-pv3/weather-data/tree/MyMetaData/helfenbein_kilian",
-            "format": "PostgreSQL",
+            "name": "einleuchtend_wrdata_2015_wr4.csv",
+            "path": null,
+            "format": "csv",
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
@@ -1584,7 +1467,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
             },
             "dialect": {
                 "delimiter": ";",
-                "double precisionSeparator": "."
+                "decimalSeparator": "."
             }
         }
     ],
@@ -1612,13 +1495,13 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
 }';
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','setup','pv3','einleuchtend_wrdata_2015_wr4','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
+SELECT db_log('PV3','v1','setup','pv3','einleuchtend_wrdata_2015_wr4','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.einleuchtend_wrdata_2015_wr4 FROM 'C:\data\pv3_data_2015\einleuchtend_wrdata_2015_wr4.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.einleuchtend_wrdata_2015_wr4 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015einleuchtend_wrdata_2015_wr4.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','import','pv3','einleuchtend_wrdata_2015_wr4','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
+SELECT db_log('PV3','v1','import','pv3','einleuchtend_wrdata_2015_wr4','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
 
 
 -- WR 5
@@ -1651,10 +1534,10 @@ CREATE TABLE            pv3.einleuchtend_wrdata_2015_wr5 (
 
 -- Metadata
 COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr5 IS '{
-    "name": "einleuchtend_wrdata_2015_wr5_v140_KH",
-    "title": "einleuchtend WR 5 data",
+    "name": "einleuchtend_wrdata_2015_wr5",
+    "title": "SonnJa! einleuchtend e.V. WR 5 data 2015",
     "id": null,
-    "description": "einleuchtend e.V. inverter 5 data",
+    "description": "Data for the measurement series of inverter 5 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
     "language": [
         "en-GB",
 		"de-DE"
@@ -1669,7 +1552,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr5 IS '{
         "homepage": "https://re-master.htw-berlin.de/",
         "documentation": "Solaranlangen und -kraftwerke (W-PV3)",
         "sourceCode": "https://github.com/htw-pv3/weather-data",
-        "contact": "s0554994@htw-berlin.de",
+        "contact": "ludwig.huelk@rl-institut.de",
         "grantNo": null,
         "fundingAgency": null,
         "fundingAgencyLogo": null,
@@ -1692,23 +1575,9 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr5 IS '{
     },
     "sources": [
         {
-            "title": "W-PV3 Solaranlagen und -kraftwerke metadata weatherdata",
-            "description": "Metadata for the measurement series of inverter 1 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
-            "path": "https://github.com/htw-pv3/weather-data",
-            "licenses": [
-                {
-                    "name": "AGPL v3",
-                    "title": "GNU Affero General Public License v3.0",
-                    "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-                    "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-                    "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
-                }
-            ]
-        },
-        {
             "title": "SonnJa! einleuchtend e.V.",
-            "description": "Data",
-            "path": "http://sonnja.einleuchtend.org/",
+            "description": "Website of the association for the promotion of teaching, science and research in the field of renewable energies",
+            "path": "http://einleuchtend.org/sonn-ja/download-und-visualisierung/",
             "licenses": [
                 {
                     "name": "unknown",
@@ -1722,11 +1591,11 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr5 IS '{
     ],
     "licenses": [
         {
-            "name": "AGPL v3",
-            "title": "GNU Affero General Public License v3.0",
-            "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-            "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-            "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": null,
+            "attribution": null
         }
     ],
     "contributors": [
@@ -1738,19 +1607,19 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr5 IS '{
             "comment": "Create table"
         },
         {
-            "title": "Kilian Helfenbein",
+            "title": "htw-pv3-sose2020",
             "email": null,
-            "date": "2020-05-04",
+            "date": "2020-05-10",
             "object": "metadata",
-            "comment": "Add metadata"
+            "comment": "Add Metadata OEMetadata v.1.4 "
         }
     ],
     "resources": [
         {
             "profile": "tabular-data-resource",
-            "name": "pv3.einleuchtend_wrdata_2015_wr5_v140_KH",
-            "path": "https://github.com/htw-pv3/weather-data/tree/MyMetaData/helfenbein_kilian",
-            "format": "PostgreSQL",
+            "name": "einleuchtend_wrdata_2015_wr5.csv",
+            "path": null,
+            "format": "csv",
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
@@ -1913,7 +1782,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr5 IS '{
             },
             "dialect": {
                 "delimiter": ";",
-                "double precisionSeparator": "."
+                "decimalSeparator": "."
             }
         }
     ],
@@ -1941,13 +1810,13 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr5 IS '{
 }';
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','setup','pv3','einleuchtend_wrdata_2015_wr5','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
+SELECT db_log('PV3','v1','setup','pv3','einleuchtend_wrdata_2015_wr5','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.einleuchtend_wrdata_2015_wr5 FROM 'C:\data\pv3_data_2015\einleuchtend_wrdata_2015_wr5.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.einleuchtend_wrdata_2015_wr5 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015einleuchtend_wrdata_2015_wr5.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','import','pv3','einleuchtend_wrdata_2015_wr5','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
+SELECT db_log('PV3','v1','import','pv3','einleuchtend_wrdata_2015_wr5','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
 
 
 -- Time
@@ -2127,13 +1996,13 @@ COMMENT ON TABLE pv3.time_2015 IS '{
 }';
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','setup','pv3','time_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
+SELECT db_log('PV3','v1','setup','pv3','time_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.time_2015 FROM 'C:\data\pv3_data_2015\htw_wetter_time_2015.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.time_2015 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015htw_wetter_time_2015.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','import','pv3','time_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
+SELECT db_log('PV3','v1','import','pv3','time_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
 
 
 -- Sun
@@ -2312,13 +2181,13 @@ COMMENT ON TABLE pv3.sun_2015 IS '{
 }';
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','setup','pv3','sun_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
+SELECT db_log('PV3','v1','setup','pv3','sun_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.sun_2015 FROM 'C:\data\pv3_data_2015\htw_wetter_sun_2015.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.sun_2015 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015htw_wetter_sun_2015.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','import','pv3','sun_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
+SELECT db_log('PV3','v1','import','pv3','sun_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
 
 -- Select latest entries
 SELECT * FROM pv3.db_log ORDER BY id DESC LIMIT 16;
