@@ -2,7 +2,7 @@
 Setup tables and import data from CSV
 
 Dieses Skript erstellt alle notwendigen Datenbanktabellen und importiert die Daten aus den CSV-Dateien. 
-Der Speicherort des Datenordners "pv3_data_2015" ist '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015'
+Der Speicherort des Datenordners "pv3_data_2015" ist 'C:\data\pv3_data_2015\'
 
 __copyright__   = "© Reiner Lemoine Institut"
 __license__     = "Creative Commons Zero v1.0 Universal (CC0-1.0)"
@@ -240,7 +240,7 @@ COMMENT ON TABLE pv3.htw_weatherdata_2015 IS '{
 SELECT db_log('PV3','v1','setup','pv3','htw_weatherdata_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.htw_weatherdata_2015 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015htw_wetter_weatherdata_2015.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.htw_weatherdata_2015 FROM 'C:\data\pv3_data_2015\htw_wetter_weatherdata_2015.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('PV3','v1','import','pv3','htw_weatherdata_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
@@ -556,7 +556,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
 SELECT db_log('PV3','v1','setup','pv3','einleuchtend_wrdata_2015_wr1','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.einleuchtend_wrdata_2015_wr1 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015einleuchtend_wrdata_2015_wr1.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.einleuchtend_wrdata_2015_wr1 FROM 'C:\data\pv3_data_2015\einleuchtend_wrdata_2015_wr1.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('PV3','v1','import','pv3','einleuchtend_wrdata_2015_wr1','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
@@ -870,7 +870,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr2 IS '{
 SELECT db_log('PV3','v1','setup','pv3','einleuchtend_wrdata_2015_wr2','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.einleuchtend_wrdata_2015_wr2 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015einleuchtend_wrdata_2015_wr2.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.einleuchtend_wrdata_2015_wr2 FROM 'C:\data\pv3_data_2015\einleuchtend_wrdata_2015_wr2.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('PV3','v1','import','pv3','einleuchtend_wrdata_2015_wr2','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
@@ -1184,7 +1184,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr3 IS '{
 SELECT db_log('PV3','v1','setup','pv3','einleuchtend_wrdata_2015_wr3','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.einleuchtend_wrdata_2015_wr3 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015einleuchtend_wrdata_2015_wr3.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.einleuchtend_wrdata_2015_wr3 FROM 'C:\data\pv3_data_2015\einleuchtend_wrdata_2015_wr3.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('PV3','v1','import','pv3','einleuchtend_wrdata_2015_wr3','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
@@ -1498,7 +1498,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr4 IS '{
 SELECT db_log('PV3','v1','setup','pv3','einleuchtend_wrdata_2015_wr4','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.einleuchtend_wrdata_2015_wr4 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015einleuchtend_wrdata_2015_wr4.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.einleuchtend_wrdata_2015_wr4 FROM 'C:\data\pv3_data_2015\einleuchtend_wrdata_2015_wr4.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('PV3','v1','import','pv3','einleuchtend_wrdata_2015_wr4','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
@@ -1813,7 +1813,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr5 IS '{
 SELECT db_log('PV3','v1','setup','pv3','einleuchtend_wrdata_2015_wr5','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.einleuchtend_wrdata_2015_wr5 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015einleuchtend_wrdata_2015_wr5.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.einleuchtend_wrdata_2015_wr5 FROM 'C:\data\pv3_data_2015\einleuchtend_wrdata_2015_wr5.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('PV3','v1','import','pv3','einleuchtend_wrdata_2015_wr5','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
@@ -1999,7 +1999,7 @@ COMMENT ON TABLE pv3.time_2015 IS '{
 SELECT db_log('PV3','v1','setup','pv3','time_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.time_2015 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015htw_wetter_time_2015.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.time_2015 FROM 'C:\data\pv3_data_2015\htw_wetter_time_2015.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('PV3','v1','import','pv3','time_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
@@ -2184,7 +2184,7 @@ COMMENT ON TABLE pv3.sun_2015 IS '{
 SELECT db_log('PV3','v1','setup','pv3','sun_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Setup table');
 
 -- Import data
-COPY pv3.sun_2015 FROM '/Users/Julian/Documents/Studies/02_RES/2020_SOSE_PV3_HTW/week_5_metadaten/sonnja_pv3_2015htw_wetter_sun_2015.csv' DELIMITER ';' CSV HEADER;
+COPY pv3.sun_2015 FROM 'C:\data\pv3_data_2015\htw_wetter_sun_2015.csv' DELIMITER ';' CSV HEADER;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('PV3','v1','import','pv3','sun_2015','htw_pv3_postgresql_5_setup_tables_and_import_data.sql','Import data from CSV');
