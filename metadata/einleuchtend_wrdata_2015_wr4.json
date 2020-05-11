@@ -1,8 +1,8 @@
 {
-    "name": "einleuchtend_wrdata_2015_wr4_v140_KH",
-    "title": "einleuchtend WR 4 data",
+    "name": "einleuchtend_wrdata_2015_wr4",
+    "title": "SonnJa! einleuchtend e.V. WR 4 data 2015",
     "id": null,
-    "description": "einleuchtend e.V. inverter 4 data",
+    "description": "Data for the measurement series of inverter 4 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
     "language": [
         "en-GB",
 		"de-DE"
@@ -17,7 +17,7 @@
         "homepage": "https://re-master.htw-berlin.de/",
         "documentation": "Solaranlangen und -kraftwerke (W-PV3)",
         "sourceCode": "https://github.com/htw-pv3/weather-data",
-        "contact": "s0554994@htw-berlin.de",
+        "contact": "ludwig.huelk@rl-institut.de",
         "grantNo": null,
         "fundingAgency": null,
         "fundingAgencyLogo": null,
@@ -40,23 +40,9 @@
     },
     "sources": [
         {
-            "title": "W-PV3 Solaranlagen und -kraftwerke metadata weatherdata",
-            "description": "Metadata for the measurement series of inverter 1 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
-            "path": "https://github.com/htw-pv3/weather-data",
-            "licenses": [
-                {
-                    "name": "AGPL v3",
-                    "title": "GNU Affero General Public License v3.0",
-                    "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-                    "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-                    "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
-                }
-            ]
-        },
-        {
             "title": "SonnJa! einleuchtend e.V.",
-            "description": "Data",
-            "path": "http://sonnja.einleuchtend.org/",
+            "description": "Website of the association for the promotion of teaching, science and research in the field of renewable energies",
+            "path": "http://einleuchtend.org/sonn-ja/download-und-visualisierung/",
             "licenses": [
                 {
                     "name": "unknown",
@@ -70,11 +56,11 @@
     ],
     "licenses": [
         {
-            "name": "AGPL v3",
-            "title": "GNU Affero General Public License v3.0",
-            "path": "https://www.gnu.org/licenses/agpl-3.0.de.html",
-            "instruction": "The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.",
-            "attribution": "© Reiner Lemoine Institut ©2009 - 2020 einleuchtend e.V."
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": null,
+            "attribution": null
         }
     ],
     "contributors": [
@@ -86,26 +72,19 @@
             "comment": "Create table"
         },
         {
-            "title": "Kilian Helfenbein",
+            "title": "htw-pv3-sose2020",
             "email": null,
-            "date": "2020-05-04",
+            "date": "2020-05-10",
             "object": "metadata",
-            "comment": "Add metadata"
-        },
-		{
-            "title": "Matthias Kubicki",
-            "email": null,
-            "date": "2020-05-06",
-            "object": "metadata",
-            "comment": "rework resources names and types"
+            "comment": "Add Metadata OEMetadata v.1.4 "
         }
     ],
     "resources": [
         {
             "profile": "tabular-data-resource",
-            "name": "pv3.einleuchtend_wrdata_2015_wr4_v140_KH",
-            "path": "https://github.com/htw-pv3/weather-data/tree/MyMetaData/helfenbein_kilian",
-            "format": "PostgreSQL",
+            "name": "einleuchtend_wrdata_2015_wr4.csv",
+            "path": null,
+            "format": "csv",
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
@@ -267,7 +246,7 @@
             },
             "dialect": {
                 "delimiter": ";",
-                "double precisionSeparator": "."
+                "decimalSeparator": "."
             }
         }
     ],

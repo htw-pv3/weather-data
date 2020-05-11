@@ -283,7 +283,7 @@ ALTER TABLE pv3.db_log
 ALTER TABLE pv3.db_log OWNER TO role_user; 
 GRANT SELECT ON TABLE pv3.db_log TO role_read;
 
--- Metadata TODO: Update metadata to v1.4.0 Done: Kilian Helfenbein 03.05.2020
+-- Metadata
 COMMENT ON TABLE pv3.db_log IS '{
     "name": "db_log",
     "title": "Scenario Log",
@@ -294,7 +294,7 @@ COMMENT ON TABLE pv3.db_log IS '{
     ],
     "keywords": [
         "Versioning",
-		"TableInfo"
+        "TableInfo"
     ],
     "publicationDate": "2018-02-21",
     "context": {
@@ -362,7 +362,7 @@ COMMENT ON TABLE pv3.db_log IS '{
         }
     ],
     "contributors": [
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2016-10-01",
@@ -376,59 +376,59 @@ COMMENT ON TABLE pv3.db_log IS '{
             "object": "user_name",
             "comment": "Add user_name"
         },
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2016-11-16",
             "object": "io",
             "comment": "Add io"
         },
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2016-11-16",
             "object": "metadata",
             "comment": "Add metadata"
         },
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2017-01-15",
             "object": "metadata",
             "comment": "Update metadata"
         },
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2017-03-21",
             "object": "metadata",
             "comment": "Update metadata to 1.1"
         },
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2017-04-06",
             "object": "metadata",
             "comment": "Update metadata to 1.2"
         },
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2017-06-19",
             "object": "metadata",
             "comment": "Update metadata to 1.3"
         },
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2018-02-21",
             "object": "license",
             "comment": "Update license to CC0"
         },
-		{
-            "title": "Kilian Helfenbein",
+        {
+            "title": "htw-pv3-sose2020",
             "email": null,
-            "date": "2020-05-03",
+            "date": "2020-05-10",
             "object": "metadata",
             "comment": "update metadata to 1.4"
         }
@@ -454,7 +454,7 @@ COMMENT ON TABLE pv3.db_log IS '{
                         "type": "text",
                         "unit": null
                     },
-					{
+                    {
                         "name": "version",
                         "description": "Scenario version",
                         "type": "text",
