@@ -285,9 +285,7 @@ GRANT SELECT ON TABLE pv3.db_log TO role_read;
 
 -- Metadata
 COMMENT ON TABLE pv3.db_log IS '{
-    "name": "db_log",
     "title": "Scenario Log",
-    "id": null,
     "description": "Versioning and table info",
     "language": [
         "en-GB"
@@ -323,44 +321,24 @@ COMMENT ON TABLE pv3.db_log IS '{
         }
     },
     "sources": [
-        {
-            "title": "eGo DataProcessing",
-            "description": "Code",
-            "path": "https://github.com/openego/data_processing",
-            "licenses": [
-                {
-                    "name": "AGPL-3.0-or-later",
-                    "title": "GNU Affero General Public License v3.0 or later",
-                    "path": "https://www.gnu.org/licenses/agpl-3.0.txt",
-                    "instruction": "",
-                    "attribution": "eGo DataProcessing © Flensburg University of Applied Sciences, Centre for Sustainable Energy Systems © Europa-Universität Flensburg, Centre for Sustainable Energy Systems © Reiner Lemoine Institut © DLR Institute for Networked Energy Systems"
-                }
-            ]
-        },
-        {
-            "title": "eGo DataProcessing",
-            "description": "Documentation",
-            "path": "http://data-processing.readthedocs.io/en/latest/",
-            "licenses": [
-                {
-                    "name": "CC-BY-4.0",
-                    "title": "Creative Commons 4.0 International",
-                    "path": "https://creativecommons.org/licenses/by/4.0/deed.de",
-                    "instruction": "",
-                    "attribution": "eGo DataProcessing Documentation © Flensburg University of Applied Sciences, Centre for Sustainable Energy Systems © Europa-Universität Flensburg, Centre for Sustainable Energy Systems © Reiner Lemoine Institut © DLR Institute for Networked Energy Systems"
-                }
-            ]
-        }
-    ],
-    "licenses": [
-        {
-            "name": "CC0-1.0",
-            "title": "Creative Commons Zero v1.0 Universal",
-            "path": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
-            "instruction": "You can: Commercial Use, Private Use, Modify, Distribute; You cannot: Use Trademark, Hold Liable, Use Patent Claims; You must: none!",
-            "attribution": "© Reiner Lemoine Institut"
-        }
-    ],
+        {"name": "eGo DataProcessing", "description": "Code", "url": "https://github.com/openego/data_processing", "license": "AGPL-3.0-or-later", "copyright": "eGo DataProcessing © Flensburg University of Applied Sciences, Centre for Sustainable Energy Systems © Europa-Universität Flensburg, Centre for Sustainable Energy Systems © Reiner Lemoine Institut © DLR Institute for Networked Energy Systems"},
+        {"name": "eGo DataProcessing", "description": "Documentation", "url": "http://data-processing.readthedocs.io/en/latest/", "license": "CC-BY-4.0", "copyright": "eGo DataProcessing Documentation © Flensburg University of Applied Sciences, Centre for Sustainable Energy Systems © Europa-Universität Flensburg, Centre for Sustainable Energy Systems © Reiner Lemoine Institut © DLR Institute for Networked Energy Systems"}],
+    "spatial": 
+        {"location": "none",
+        "extent": "none",
+        "resolution": "none"},
+    "temporal": 
+        {"reference_date": "none",
+        "start": "none",
+        "end": "none",
+        "resolution": "none"},
+    "license": 
+        {"id": "CC0-1.0",
+        "name": "Creative Commons Zero v1.0 Universal",
+        "version": "1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+        "instruction": "You can: Commercial Use, Private Use, Modify, Distribute; You cannot: Use Trademark, Hold Liable, Use Patent Claims; You must: none!",
+        "copyright": "© Reiner Lemoine Institut"},
     "contributors": [
         {
             "title": "Ludwig Hülk",
@@ -560,7 +538,6 @@ COMMENT ON TABLE pv3.db_log IS '{
         "null": "If not applicable use (null)"
     }
 }';
-
 
 -- Scenario Log function
 DROP FUNCTION IF EXISTS     public.db_log(text,text,text,text,text,text,text);
