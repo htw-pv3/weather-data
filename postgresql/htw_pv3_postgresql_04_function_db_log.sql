@@ -431,7 +431,7 @@ COMMENT ON TABLE pv3.db_log IS '{
             "date": "2020-05-10",
             "object": "metadata",
             "comment": "update metadata to 1.4"
-        },
+        }
     ],
     "resources": [
         {

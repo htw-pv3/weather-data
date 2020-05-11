@@ -355,7 +355,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
             "date": "2020-05-10",
             "object": "metadata",
             "comment": "Add Metadata OEMetadata v.1.4 "
-        },
+        }
 
     ],
     "resources": [
