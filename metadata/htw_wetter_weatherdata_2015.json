@@ -1,0 +1,206 @@
+{
+    "name": "pv3.htw_weatherdata_2015",
+    "title": "HTW Weatherdata",
+    "id": null,
+    "description": "HTW Weatherdata 2015",
+    "language": [
+        "en-GB",
+		"de-DE"
+    ],
+    "keywords": [
+        "weatherdata"
+    ],
+    "publicationDate": null,
+    "context": {
+        "homepage": "https://re-master.htw-berlin.de/",
+        "documentation": "Solaranlangen und -kraftwerke (W-PV3)",
+        "sourceCode": "https://github.com/htw-pv3/weather-data",
+        "contact": "ludwig.huelk@rl-institut.de",
+        "grantNo": null,
+        "fundingAgency": null,
+        "fundingAgencyLogo": null,
+        "publisherLogo": "https://corporatedesign.htw-berlin.de/files/Presse/_tmp_/d/5/csm_Bild-Wort-Marke_auf_weiss_1280x853_3722b5420f.jpg"
+    },
+    "spatial": {
+        "location": "Wilhelminenhofstraße 75A, 12459 Berlin",
+        "extent": null,
+        "resolution": null
+    },
+    "temporal": {
+        "referenceDate": "2015",
+        "timeseries": {
+            "start": "2015-01-01 00:00:00",
+            "end": "2015-12-31 23:59:00",
+            "resolution": "1 min",
+            "alignment": "unknown",
+            "aggregationType": "unknown"
+        }
+    },
+    "sources": [
+        {
+            "title": "wetter.htw-berlin.de",
+            "description": "Data",
+            "path": "https://wetter.htw-berlin.de/Download",
+            "licenses": [
+                {
+                    "name": "unknown",
+                    "title": "unknown",
+                    "path": "https://wetter.htw-berlin.de/About/Disclaimer",
+                    "instruction": "downloads and copies only permitted for private, non-commercial use",
+                    "attribution": "© 2020 - wetter.htw-berlin.de"
+                }
+            ]
+        }
+    ],
+    "licenses": [
+        {
+            "name": null,
+            "title": null,
+            "path": null,
+            "instruction": "only permitted for private, non-commercial use",
+            "attribution": null
+        }
+    ],
+    "contributors": [
+		{
+            "title": "Ludwig Hülk",
+            "email": null,
+            "date": "2020-04-29",
+            "object": "data",
+            "comment": "Create table"
+        },
+        {
+            "title": "htw-pv3-sose2020",
+            "email": null,
+            "date": "2020-05-10",
+            "object": "metadata",
+            "comment": "Add Metadata OEMetadata v.1.4 "
+        }
+    ],
+    "resources": [
+        {
+            "profile": "tabular-data-resource",
+            "name": "htw_wetter_weatherdata_2015.csv",
+            "path": null,
+            "format": "csv.",
+            "encoding": "UTF-8",
+            "schema": {
+                "fields": [
+					{
+                        "name": "timestamp",
+                        "description": "Timestamp without time zone",
+                        "type": "timestamp without time zone NOT NULL",
+                        "unit": "YYYY-MM-DD HH:MM:SS"
+					},
+                    {
+                        "name": "g_hor_cmp6",
+                        "description": "global irradiance horizontal CMP6 Pyranometer",
+                        "type": "integer",
+                        "unit": "W/m^2"
+                    },
+                    {
+                        "name": "g_hor_si",
+                        "description": "global irradiance horizontal SI-Pyranometer",
+                        "type": "double precision",
+                        "unit": "W/m^2"
+                    },
+                    {
+                        "name": "g_gen_cmp11",
+                        "description": "global irradiance sloped south 35° CMP11 Pyranometer",
+                        "type": "double precision",
+                        "unit": "W/m^2"
+                    },
+                    {
+                        "name": "g_gen_si",
+                        "description": "global irradiance sloped south 35° SI-Pyranometer",
+                        "type": "integer",
+                        "unit": "W/m^2"
+                    },
+                    {
+                        "name": "ev_beleuchtung",
+                        "description": "unknown",
+                        "type": "double precision",
+                        "unit": "unknown"
+                    },
+                    {
+                        "name": "v_wind",
+                        "description": "Wind speed",
+                        "type": "double precision",
+                        "unit": "m/s"
+                    },
+                    {
+                        "name": "d_wind",
+                        "description": "Wind direction",
+                        "type": "integer",
+                        "unit": "°"
+                    },
+                    {
+                        "name": "t_luft",
+                        "description": "Ambient temperature",
+                        "type": "double precision",
+                        "unit": "°C"
+                    },
+                    {
+                        "name": "h_luft",
+                        "description": "Relative Humidity",
+                        "type": "double precision",
+                        "unit": "%"
+                    },
+                    {
+                        "name": "p_luft",
+                        "description": "Atmospheric pressure",
+                        "type": "double precision",
+                        "unit": "hPa"
+                    },
+                    {
+                        "name": "i_niederschlag",
+                        "description": "Precipitation",
+                        "type": "double precision",
+                        "unit": "unknown"
+                    }
+                ],
+                "primaryKey": [
+                    "timestamp"
+                ],
+                "foreignKeys": [
+                    {
+                        "fields": [
+                            null
+                        ],
+                        "reference": {
+                            "resource": null,
+                            "fields": [
+                                null
+                            ]
+                        }
+                    }
+                ]
+            },
+            "dialect": {
+                "delimiter": ";",
+                "decimalSeparator": "."
+            }
+        }
+    ],
+    "review": {
+        "path": null,
+        "badge": null
+    },
+    "metaMetadata": {
+        "metadataVersion": "OEP-1.4.0",
+        "metadataLicense": {
+            "name": "CC0-1.0",
+            "title": "Creative Commons Zero v1.0 Universal",
+            "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+        }
+    },
+    "_comment": {
+        "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/organisation/wiki/metadata)",
+        "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss±hh)",
+        "units": "Use a space between numbers and units (100 m)",
+        "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+        "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+        "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/wiki)",
+        "null": "If not applicable use (null)"
+    }
+}
