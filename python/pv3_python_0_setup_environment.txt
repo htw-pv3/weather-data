@@ -1,0 +1,92 @@
+﻿/*
+PV3 Setup Python Environment
+
+Anaconda required!
+
+__copyright__   = "© Reiner Lemoine Institut"
+__license__     = "Creative Commons Zero v1.0 Universal (CC0-1.0)"
+__url__         = "https://creativecommons.org/publicdomain/zero/1.0/"
+__author__      = "Ludwig Hülk"
+*/
+
+
+# 0. Set System Paths
+- open console "cmd.exe" as admin
+> echo %path%
+> set PATH=%PATH%;D:\Anaconda3;D:\Anaconda3\Scripts\
+
+# Check conda & python
+> conda --version
+"conda 4.8.3"
+> conda search --full-name python
+> python --version
+"Python 3.7.1"
+
+# Check Conda-Environments
+> conda info --envs
+> conda create --help
+
+# Start Conda-Environment (Muss vorher erstellt werden)
+> activate d_py37_vis
+
+
+# Create Environment
+
+## From File
+> cd D:\git\github\htw-pv3\weather-data\python
+> conda env create -f requirements.yml
+> activate d_py37_vis
+> conda install colorlover -c conda-forge
+
+## Manuell
+> conda create --name d_py37_vis python=3.7
+> activate d_py37_vis
+> conda install jupyter
+> conda install matplotlib
+> conda install pandas
+> conda install plotly
+> conda install sqlalchemy
+> conda install seaborn
+> conda install xlrd
+> conda install openpyxl
+> conda install psycopg2
+> conda install colorlover -c conda-forge
+
+# Start  Conda-Environment
+> activate d_py37_vis
+
+# Start Jupyter Notebook
+- cd <path>\ma3_python
+> cd D:\git\github\htw-pv3\weather-data\python
+> jupyter notebook
+
+# Close Jupyter Notebook
+- Strg + c
+
+# Close Conda-Environment
+> deactivate
+
+
+# Delete Conda-Environment (If failed!)
+> conda remove --name d_py37_vis --all
+
+
+-- -- Further Commands -- --
+
+# Check existing packages
+> conda list
+> conda list --explicit
+
+# Search for other packages
+- conda search <package>
+
+# Install package
+> conda install -c pvlib pvlib
+
+# Remove package
+> conda remove --name d_py37_vis sqlalchemy
+
+# Install package from file
+pip install -e <name>
+or
+> easy_install <name>.exe
