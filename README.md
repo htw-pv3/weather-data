@@ -21,7 +21,7 @@ Durch das Ausführen der [SQL-Skripte][htw-pv3-weatherdata] in PgAdmin4 wird die
 ### Hinweise: 
 
 - Entsprechende Stellen sind in den Skripten markiert.
-- Arbeiten Sie kollaborativ mit den, Ihnen zu Verfügung stehende, Tools.
+- Arbeiten Sie kollaborativ mit den, Ihnen zu Verfügung stehenden, Tools.
 - Prüfen Sie Ihre Ergebnisse gegenseitig: Jeder kann Fehler machen!
 - Sammeln Sie die Metadaten jeweils in einer .json-Datei und geben Sie diese mit ab.
 - Dokumentieren Sie Ihr Vorgehen und ihre durchgeführte Arbeit kurz in schriftlicher Form.
