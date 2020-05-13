@@ -1,0 +1,22 @@
+name: d_py36_vis-tutorial
+channels:
+    - conda-forge
+    - defaults
+dependencies:
+    - basemap
+    - basemap-data-hires
+    - bokeh
+    - cartopy
+    - holoviews
+    - matplotlib
+    - notebook
+    - numpy
+    - pandas
+    - plotly
+    - python=3.6
+    - scipy
+    - seaborn
+    - statsmodels
+    - xarray
+    - pip:
+        - cufflinks
