@@ -40,7 +40,7 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_sun_weather_2015_mview AS
         ON (t.timestamp=w.timestamp);
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('PV3','v2','output','pv3','pv3_time_sun_weather_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join time and sun');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_sun_weather_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join time and sun and weather');
 
 
 -- Join time and sun and weatherdata and WR1
@@ -62,7 +62,7 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_sun_weather_wr1_2015_mview AS
 
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('PV3','v2','output','pv3','pv3_time_sun_weather_wr1_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join data');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_sun_weather_wr1_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join time, sun, weather, and wr1');
 
 
 /*
@@ -83,5 +83,5 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_sun_weather_allwr_2015_mview AS
 SELECT db_log('PV3','v2','output','pv3','pv3_time_sun_weather_allwr_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join all data');
 
 -- Select latest entries
-SELECT * FROM pv3.db_log ORDER BY id DESC LIMIT 6;
+SELECT * FROM pv3.db_log ORDER BY id DESC LIMIT 8;
 */
