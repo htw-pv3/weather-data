@@ -24,12 +24,12 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_sun_2015_mview AS
         ON (t.date=s.date);
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('PV3','v3','output','pv3','pv3_time_sun_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join time and sun');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_sun_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join time and sun');
 
 
 -- Join time and sun and weatherdata
-DROP MATERIALIZED VIEW IF EXISTS pv3.pv3_time_weather_2015_mview CASCADE;
-CREATE MATERIALIZED VIEW         pv3.pv3_time_weather_2015_mview AS
+DROP MATERIALIZED VIEW IF EXISTS pv3.pv3_time_sun_weather_2015_mview CASCADE;
+CREATE MATERIALIZED VIEW         pv3.pv3_time_sun_weather_2015_mview AS
     SELECT  t.timestamp AS t_timestamp, t.date, t.time,
             s.sunrise,s.sunset,
             w.g_hor_cmp6,w.g_hor_si,w.g_gen_cmp11,w.g_gen_si,w.ev_beleuchtung,w.v_wind,w.d_wind,w.t_luft,w.h_luft,w.p_luft,w.i_niederschlag
@@ -40,12 +40,12 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_weather_2015_mview AS
         ON (t.timestamp=w.timestamp);
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('PV3','v3','output','pv3','pv3_time_weather_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join time and sun');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_sun_weather_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join time and sun');
 
 
 -- Join time and sun and weatherdata and WR1
-DROP MATERIALIZED VIEW IF EXISTS pv3.pv3_time_weather_wr1_2015_mview CASCADE;
-CREATE MATERIALIZED VIEW         pv3.pv3_time_weather_wr1_2015_mview AS
+DROP MATERIALIZED VIEW IF EXISTS pv3.pv3_time_sun_weather_wr1_2015_mview CASCADE;
+CREATE MATERIALIZED VIEW         pv3.pv3_time_sun_weather_wr1_2015_mview AS
     SELECT  t.timestamp AS t_timestamp, t.date, t.time,
             s.sunrise,s.sunset,
             w.g_hor_cmp6,w.g_hor_si,w.g_gen_cmp11,w.g_gen_si,w.ev_beleuchtung,w.v_wind,w.d_wind,w.t_luft,w.h_luft,w.p_luft,w.i_niederschlag,
@@ -58,18 +58,17 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_weather_wr1_2015_mview AS
     LEFT JOIN   pv3.einleuchtend_wrdata_2015_wr1 AS wr
         ON (t.timestamp=wr.timestamp);
 
-COPY (SELECT * FROM pv3.pv3_time_weather_wr1_2015_mview) TO 'C:\data\pv3_data_2015\calculation\pv3_time_weather_wr1_2015_mview.csv' DELIMITER ';' CSV HEADER;
 
 
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('PV3','v1','output','pv3','pv3_time_weather_wr1_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join data');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_sun_weather_wr1_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join data');
 
 
 /*
 -- Join time and sun and weatherdata and all WR
-DROP MATERIALIZED VIEW IF EXISTS pv3.data_all_wr_2015_mview CASCADE;
-CREATE MATERIALIZED VIEW         pv3.data_all_wr_2015_mview AS
+DROP MATERIALIZED VIEW IF EXISTS pv3.pv3_time_sun_weather_allwr_2015_mview CASCADE;
+CREATE MATERIALIZED VIEW         pv3.pv3_time_sun_weather_allwr_2015_mview AS
     SELECT  t.timestamp AS timestamp, t.date, t.time,
             s.sunrise,s.sunset,
             w.g_hor_cmp6,w.g_hor_si,w.g_gen_cmp11,w.g_gen_si,w.ev_beleuchtung,w.v_wind,w.d_wind,w.t_luft,w.h_luft,w.p_luft,w.i_niederschlag,
@@ -81,7 +80,7 @@ CREATE MATERIALIZED VIEW         pv3.data_all_wr_2015_mview AS
     FROM        ;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('PV3','v1','output','pv3','data_all_wr_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join all data');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_sun_weather_allwr_2015_mview','htw_pv3_postgresql_6_data_join.sql','Join all data');
 
 -- Select latest entries
 SELECT * FROM pv3.db_log ORDER BY id DESC LIMIT 6;
