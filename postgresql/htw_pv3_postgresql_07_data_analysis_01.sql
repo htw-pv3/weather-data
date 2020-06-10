@@ -225,8 +225,8 @@ SELECT db_log('PV3','v3','output','pv3','pv3_related_gaps','htw_pv3_postgresql_7
 
 
 -- Questions & Answers
-DROP MATERIALIZED VIEW IF EXISTS pv3.data_analysis_mview CASCADE;
-CREATE MATERIALIZED VIEW         pv3.data_analysis_mview AS
+DROP MATERIALIZED VIEW IF EXISTS pv3.pv3_data_analysis_mview CASCADE;
+CREATE MATERIALIZED VIEW         pv3.pv3_data_analysis_mview AS
     SELECT 
         0 AS id,
         'Anzahl Soll-Messwerte' AS question,
@@ -335,11 +335,11 @@ UNION ALL
           WHERE ) AS sub;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('PV3','v2','output','pv3','data_analysis_mview','htw_pv3_postgresql_7_data_analysis.sql','Answer questions');
+SELECT db_log('PV3','v2','output','pv3','pv3_data_analysis_mview','htw_pv3_postgresql_7_data_analysis.sql','Answer questions');
 
 -- export
-SELECT * FROM pv3.data_analysis_mview;
-COPY (SELECT * FROM pv3.data_analysis_mview ORDER BY id) TO 'C:\data\pv3_data_2015\calculation\data_analysis_mview.csv' DELIMITER ';' CSV HEADER ENCODING 'UTF8';
+SELECT * FROM pv3.pv3_data_analysis_mview;
+COPY (SELECT * FROM pv3.pv3_data_analysis_mview ORDER BY id) TO 'C:\data\pv3_data_2015\calculation\pv3_data_analysis_mview.csv' DELIMITER ';' CSV HEADER ENCODING 'UTF8';
 
 
 -- Select latest entries
