@@ -48,16 +48,16 @@ SELECT db_log('PV3','v2','output','pv3','pv3_gaps_count_weather_view','htw_pv3_p
 -- Anzahl der Lücken in WR-Daten
 DROP VIEW IF EXISTS pv3.pv3_gaps_count_wr_view CASCADE;
 CREATE VIEW         pv3.pv3_gaps_count_wr_view AS
-    SELECT  'WR1' AS wrnref,
+    SELECT  'WR1' AS wr,
             COUNT(*) AS count
     FROM pv3.pv3_time_sun_weather_wr1_2015_mview
-    WHERE wrnref IS NULL
+    WHERE u_pv IS NULL
 
     UNION ALL
-    SELECT  'WR2' AS wrnref,
+    SELECT  'WR2' AS wr,
             COUNT(*) AS count
     FROM pv3.pv3_time_sun_weather_wr2_2015_mview
-    WHERE wrnref IS NULL
+    WHERE u_pv IS NULL
 
     UNION ALL
     
