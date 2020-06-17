@@ -2,13 +2,13 @@
     "name": "pv3.htw_weatherdata_2015",
     "title": "HTW Weatherdata",
     "id": null,
-    "description": "HTW Weatherdata 2015",
+    "description": "Measurement data with one minute resolution for 2015 at HTW Berlin (Wilhelminenhofstraße 75A, 12459 Berlin, Gebäude G).",
     "language": [
         "en-GB",
-		"de-DE"
+        "de-DE"
     ],
     "keywords": [
-        "weatherdata"
+         "weatherdata", "measurement", "solar", "pv"
     ],
     "publicationDate": null,
     "context": {
@@ -22,7 +22,7 @@
         "publisherLogo": "https://corporatedesign.htw-berlin.de/files/Presse/_tmp_/d/5/csm_Bild-Wort-Marke_auf_weiss_1280x853_3722b5420f.jpg"
     },
     "spatial": {
-        "location": "Wilhelminenhofstraße 75A, 12459 Berlin",
+        "location": "52.455778° N, 13.523917° O",
         "extent": null,
         "resolution": null
     },
@@ -33,20 +33,20 @@
             "end": "2015-12-31 23:59:00",
             "resolution": "1 min",
             "alignment": "unknown",
-            "aggregationType": "unknown"
+            "aggregationType": null
         }
     },
     "sources": [
         {
-            "title": "wetter.htw-berlin.de",
-            "description": "Data",
+            "title": "HTW Wetterstation",
+            "description": "Wetterstation der Hochschule für Technik und Wirtschaft Berlin (HTW Berlin)",
             "path": "https://wetter.htw-berlin.de/Download",
             "licenses": [
                 {
-                    "name": "unknown",
-                    "title": "unknown",
+                    "name": null,
+                    "title": null,
                     "path": "https://wetter.htw-berlin.de/About/Disclaimer",
-                    "instruction": "downloads and copies only permitted for private, non-commercial use",
+                    "instruction": "Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.",
                     "attribution": "© 2020 - wetter.htw-berlin.de"
                 }
             ]
@@ -57,12 +57,12 @@
             "name": null,
             "title": null,
             "path": null,
-            "instruction": "only permitted for private, non-commercial use",
+            "instruction": "Only permitted for private, non-commercial use",
             "attribution": null
         }
     ],
     "contributors": [
-		{
+        {
             "title": "Ludwig Hülk",
             "email": null,
             "date": "2020-04-29",
@@ -70,11 +70,11 @@
             "comment": "Create table"
         },
         {
-            "title": "htw-pv3-sose2020",
+            "title": "HTW-PV3-2020",
             "email": null,
             "date": "2020-05-10",
             "object": "metadata",
-            "comment": "Add Metadata OEMetadata v.1.4 "
+            "comment": "Update Metadata OEMetadata v.1.4"
         }
     ],
     "resources": [
@@ -86,77 +86,77 @@
             "encoding": "UTF-8",
             "schema": {
                 "fields": [
-					{
+                    {
                         "name": "timestamp",
                         "description": "Timestamp without time zone",
-                        "type": "timestamp without time zone NOT NULL",
-                        "unit": "YYYY-MM-DD HH:MM:SS"
-					},
+                        "type": "timestamp without time zone (YYYY-MM-DD HH:MM:SS)",
+                        "unit": null
+                    },
                     {
                         "name": "g_hor_cmp6",
-                        "description": "global irradiance horizontal CMP6 Pyranometer",
+                        "description": "Horizontale Globalstrahlung / global irradiance horizontal / CMP6 Pyranometer",
                         "type": "integer",
                         "unit": "W/m^2"
                     },
                     {
                         "name": "g_hor_si",
-                        "description": "global irradiance horizontal SI-Pyranometer",
+                        "description": "Horizontale Globalstrahlung / global irradiance horizontal / SI-Pyranometer",
                         "type": "double precision",
                         "unit": "W/m^2"
                     },
                     {
                         "name": "g_gen_cmp11",
-                        "description": "global irradiance sloped south 35° CMP11 Pyranometer",
+                        "description": "Geneigte Globalstrahlung 35° / global irradiance sloped 35° / CMP11 Pyranometer - Spektralbereich von 270 bis 3000 nm, https://www.rg-messtechnik.de/pyranometer-cmp11.php",
                         "type": "double precision",
                         "unit": "W/m^2"
                     },
                     {
                         "name": "g_gen_si",
-                        "description": "global irradiance sloped south 35° SI-Pyranometer",
+                        "description": "Geneigte Globalstrahlung 35° / global irradiance sloped 35° / SI-Pyranometer",
                         "type": "integer",
                         "unit": "W/m^2"
                     },
                     {
                         "name": "ev_beleuchtung",
-                        "description": "unknown",
+                        "description": "Beleuchtungsstärke (hinterlegte Einheit auf der HTW-Wetterdatenseite mit W/m^2 offentsichlich falsch)",
                         "type": "double precision",
-                        "unit": "unknown"
+                        "unit": "kLux"
                     },
                     {
                         "name": "v_wind",
-                        "description": "Wind speed",
+                        "description": "Windgeschwindigkeit / Wind speed",
                         "type": "double precision",
                         "unit": "m/s"
                     },
                     {
                         "name": "d_wind",
-                        "description": "Wind direction",
+                        "description": "Windrichtung - 0° (Nord) bis 180° (Süd) / Wind direction",
                         "type": "integer",
                         "unit": "°"
                     },
                     {
                         "name": "t_luft",
-                        "description": "Ambient temperature",
+                        "description": "Lufttemperatur / Ambient temperature",
                         "type": "double precision",
                         "unit": "°C"
                     },
                     {
                         "name": "h_luft",
-                        "description": "Relative Humidity",
+                        "description": "Relative Luftfeuchte / Relative Humidity",
                         "type": "double precision",
                         "unit": "%"
                     },
                     {
                         "name": "p_luft",
-                        "description": "Atmospheric pressure",
+                        "description": "Luftdruck / Atmospheric pressure",
                         "type": "double precision",
                         "unit": "hPa"
                     },
                     {
                         "name": "i_niederschlag",
-                        "description": "Precipitation",
+                        "description": "Niederschlagsmenge / Precipitation",
                         "type": "double precision",
-                        "unit": "unknown"
+                        "unit": "mm"
                     }
                 ],
                 "primaryKey": [
