@@ -366,6 +366,19 @@ CREATE MATERIALIZED VIEW         pv3.pv3_data_analysis_days_mview AS
 SELECT db_log('PV3','v2','output','pv3','pv3_data_analysis_days_mview','htw_pv3_postgresql_07_data_analysis.sql','Days with gaps');
 
 
+-- Alle Tage mit Lücken - Wetter
+DROP MATERIALIZED VIEW IF EXISTS pv3.pv3_data_analysis_weather_days_mview CASCADE;
+CREATE MATERIALIZED VIEW         pv3.pv3_data_analysis_weather_days_mview AS
+    SELECT date, SUM(gap_count), during_day
+    FROM pv3.pv3_related_gaps
+    WHERE dataset = 'weather'
+    GROUP BY date, during_day
+    ORDER BY date;
+
+-- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
+SELECT db_log('PV3','v2','output','pv3','pv3_data_analysis_weather_days_mview','htw_pv3_postgresql_07_data_analysis.sql','Days with gaps');
+
+
 
 -- Select latest entries
 SELECT * FROM pv3.db_log ORDER BY id DESC LIMIT 12;
