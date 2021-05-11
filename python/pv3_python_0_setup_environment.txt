@@ -17,17 +17,17 @@ __author__      = "Ludwig Hülk"
 
 # Check conda & python
 > conda --version
-"conda 4.8.3"
+"conda 4.9.2"
 > conda search --full-name python
 > python --version
-"Python 3.7.1"
+"Python 3.8.10"
 
 # Check Conda-Environments
 > conda info --envs
 > conda create --help
 
 # Start Conda-Environment (Muss vorher erstellt werden)
-> activate d_py37_vis
+> activate d_py38_pv3vis
 
 
 # Create Environment
@@ -35,12 +35,12 @@ __author__      = "Ludwig Hülk"
 ## From File
 > cd D:\git\github\htw-pv3\weather-data\python
 > conda env create -f requirements.yml
-> activate d_py37_vis
+> activate d_py38_pv3vis
 > conda install colorlover -c conda-forge
 
 ## Manuell
-> conda create --name d_py37_vis python=3.7
-> activate d_py37_vis
+> conda create --name d_py38_pv3vis python=3.8
+> activate d_py38_pv3vis
 > conda install jupyter
 > conda install matplotlib
 > conda install pandas
@@ -53,7 +53,7 @@ __author__      = "Ludwig Hülk"
 > conda install colorlover -c conda-forge
 
 # Start  Conda-Environment
-> activate d_py37_vis
+> activate d_py38_pv3vis
 
 # Start Jupyter Notebook
 - cd <path>\ma3_python
@@ -67,8 +67,8 @@ __author__      = "Ludwig Hülk"
 > deactivate
 
 
-# Delete Conda-Environment (If failed!)
-> conda remove --name d_py37_vis --all
+# Delete Conda-Environment
+> conda remove --name d_py38_pv3vis --all
 
 
 -- -- Further Commands -- --
@@ -84,7 +84,7 @@ __author__      = "Ludwig Hülk"
 > conda install -c pvlib pvlib
 
 # Remove package
-> conda remove --name d_py37_vis sqlalchemy
+> conda remove --name d_py38_pv3vis sqlalchemy
 
 # Install package from file
 pip install -e <name>
