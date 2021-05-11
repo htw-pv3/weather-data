@@ -57,16 +57,16 @@ COMMENT ON TABLE pv3.openfred_weatherdata_2015_htw IS '{
         "publisherLogo": null
     },
     "spatial": {
-        "location": null,
-        "extent": "Germany (generous)",
+        "location": "52.46911239624024° N, 13.56728458404541° O",
+        "extent": null,
         "resolution": "0.0625° (~6.6 km)"
     },
     "temporal": {
-        "referenceDate": null,
+        "referenceDate": "2015",
         "timeseries": {
-            "start": "2002",
-            "end": "2018",
-            "resolution": "15 min -- 60 min (depending on parameter)",
+            "start": "2015-01-01",
+            "end": "2015-31-12",
+            "resolution": "30 minutes",
             "alignment": null,
             "aggregationType": null
         }
@@ -234,39 +234,63 @@ COMMENT ON TABLE pv3.openfred_weatherdata_2015_htw IS '{
             "schema": {
                 "fields": [
                     {
-                        "name": "id",
-                        "description": "Unique identifier",
-                        "type": "bigint",
+                        "name": "timestamp",
+                        "description": "Timestamp without time zone",
+                        "type": "timestamp",
                         "unit": null
                     },
                     {
-                        "name": "values",
-                        "description": "values of the measurement",
-                        "type": "double precision array",
-                        "unit": null
-                    },
-                    {
-                        "name": "height",
-                        "description": "height of the measuring point",
+                        "name": "lat",
+                        "description": "Latitude",
                         "type": "double precision",
-                        "unit": "metre"
+                        "unit": "°"
                     },
                     {
-                        "name": "timespan_id",
-                        "description": "timespan and resolution",
-                        "type": "bigint",
+                        "name": "lon",
+                        "description": "Longitude",
+                        "type": "double precision",
+                        "unit": "°"
+                    },
+                    {
+                        "name": "wind_speed",
+                        "description": "Wind speed",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "location_id",
-                        "description": "Geographical location of the measuring point",
-                        "type": "bigint",
+                        "name": "temp_air",
+                        "description": "Air temperature",
+                        "type": "double precision",
                         "unit": null
                     },
                     {
-                        "name": "variable_id",
-                        "description": "measurement variables",
-                        "type": "bigint",
+                        "name": "dhi",
+                        "description": "tbd",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "dirhi",
+                        "description": "tbd",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "dni",
+                        "description": "tbd",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "p",
+                        "description": "air_pressure",
+                        "type": "double precision",
+                        "unit": null
+                    },
+                    {
+                        "name": "ghi",
+                        "description": "tbd",
+                        "type": "double precision",
                         "unit": null
                     }
                 ],
