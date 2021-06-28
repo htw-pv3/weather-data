@@ -1,5 +1,5 @@
 /*
-MA3 Fill Gaps
+Fill Gaps in weatherdata and WR-data
 
 Auffüllen der Daten.
 Grundlage ist der JOIN pv3.pv3_time_sun_weather_allwr_2015_mview

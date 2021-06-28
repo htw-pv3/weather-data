@@ -33,7 +33,7 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_weather_2015_hourly_mview AS
     ORDER BY date, hour;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v2','output','pv3','pv3_time_weather_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_weather_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
 
 
 -- WR1 - Durchschnittswerte pro Stunde
@@ -67,7 +67,7 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_wr1_2015_hourly_mview AS
     GROUP BY date,EXTRACT(HOUR FROM t_timestamp);
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v2','output','pv3','pv3_time_wr1_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_wr1_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
 
 
 -- WR2 - Durchschnittswerte pro Stunde
@@ -101,7 +101,7 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_wr2_2015_hourly_mview AS
     GROUP BY date,EXTRACT(HOUR FROM t_timestamp);
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v2','output','pv3','pv3_time_wr2_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_wr2_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
 
 
 -- WR3 - Durchschnittswerte pro Stunde
@@ -135,7 +135,7 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_wr3_2015_hourly_mview AS
     GROUP BY date,EXTRACT(HOUR FROM t_timestamp);
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v2','output','pv3','pv3_time_wr3_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_wr3_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
 
 
 -- WR4 - Durchschnittswerte pro Stunde
@@ -169,7 +169,7 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_wr4_2015_hourly_mview AS
     GROUP BY date,EXTRACT(HOUR FROM t_timestamp);
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v2','output','pv3','pv3_time_wr4_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_wr4_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
 
 
 -- WR5 - Durchschnittswerte pro Stunde
@@ -203,7 +203,7 @@ CREATE MATERIALIZED VIEW         pv3.pv3_time_wr5_2015_hourly_mview AS
     GROUP BY date,EXTRACT(HOUR FROM t_timestamp);
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v2','output','pv3','pv3_time_wr5_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
+SELECT db_log('PV3','v2','output','pv3','pv3_time_wr5_2015_hourly_mview','htw_pv3_postgresql_08_calculations.sql','Hourly data WR1');
 
 
 -- Select latest entries
