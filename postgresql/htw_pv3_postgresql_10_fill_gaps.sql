@@ -20,12 +20,13 @@ CREATE TABLE            pv3.pv3_gap_method (
     kommentar       text);
 
 INSERT INTO pv3.pv3_gap_method VALUES 
-    (0, 'NULL', '=0', 'WENN NULL bei Nacht -> 0'),
-    (1, 'Durchschnitt', 'Den Mittelwert eintragen', 'Stündlich, 10 Minuten'),
-    (2, 'Interpolation', 'Lineare Interpolation', ''),
-    (3, 'Letzer Wert', 'Letzen Wert fortschreiben', ''),
-    (4, 'Übertragung', 'Aus anderem Tag übertragen', ''),
-    (5, 'Ausrechnen', 'Anhand anderer Parameter berechnen', '');
+    (0, 'Null', '=0', 'NULL -> 0'),
+    (1, 'Null', '=0', 'NULL bei Nacht -> 0'),
+    (2, 'Durchschnitt', 'Den Mittelwert eintragen', 'Stündlich, 10 Minuten'),
+    (3, 'Interpolation', 'Lineare Interpolation', ''),
+    (4, 'Letzer Wert', 'Letzen Wert fortschreiben', ''),
+    (5, 'Übertragung', 'Aus anderem Tag übertragen', ''),
+    (6, 'Ausrechnen', 'Anhand anderer Parameter berechnen', '');
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('PV3','v1','setup','pv3','pv3_gap_method','htw_pv3_postgresql_7_data_analysis.sql','Create table with fill methods');
@@ -36,14 +37,14 @@ FROM        pv3.pv3_gap_method
 ORDER BY id;
 
 
--- Erstelle Tabelle mit allen Daten
-DROP TABLE IF EXISTS pv3.pv3_time_sun_weather_allwr_2015_fill CASCADE;
-CREATE TABLE         pv3.pv3_time_sun_weather_allwr_2015_fill AS
+-- Erstelle Tabelle zum Befüllen
+DROP TABLE IF EXISTS pv3.pv3_weather_allwr_2015_filled CASCADE;
+CREATE TABLE         pv3.pv3_weather_allwr_2015_filled AS
     SELECT  * 
     FROM    pv3.pv3_time_sun_weather_allwr_2015_mview
     ORDER BY timestamp;
 
-ALTER TABLE pv3.pv3_time_sun_weather_allwr_2015_fill
+ALTER TABLE pv3.pv3_weather_allwr_2015_filled
     ADD PRIMARY KEY (timestamp),
     ADD COLUMN "is_gap" BOOLEAN DEFAULT FALSE,
     ADD COLUMN "is_gap_weather" BOOLEAN DEFAULT FALSE,
@@ -54,73 +55,86 @@ ALTER TABLE pv3.pv3_time_sun_weather_allwr_2015_fill
     ADD COLUMN "is_filled_weather" BOOLEAN DEFAULT FALSE,
     ADD COLUMN "is_filled_wr" BOOLEAN DEFAULT FALSE;
 
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill
+
+-- Suche Lücken
+
+-- Lücke
+UPDATE pv3.pv3_weather_allwr_2015_filled
     SET     is_gap = TRUE
     WHERE   g_hor_si IS NULL
             OR wr1_wrnref IS NULL;
 
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill
+-- Lücke in Wetterdaten
+UPDATE pv3.pv3_weather_allwr_2015_filled
     SET     is_gap_weather = TRUE
     WHERE   g_hor_si IS NULL;
 
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill
+-- Lücke in WR-Daten
+UPDATE pv3.pv3_weather_allwr_2015_filled
     SET     is_gap_wr = TRUE
     WHERE   wr1_wrnref IS NULL;
 
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill
+-- Lücke am Tag
+UPDATE pv3.pv3_weather_allwr_2015_filled
     SET     is_during_day = CASE
         WHEN time::time < sunrise OR time::time > sunset THEN FALSE
         ELSE TRUE
         END;
 
+
 -- Überprüfe Lücken
     SELECT  1 AS id, 'Lücken Gesamt' AS name,
             count(CASE WHEN is_gap THEN 1 END) AS cnt,
             count(CASE WHEN is_filled THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  2 AS id, 'Lücken Wetter' AS name,
             count(CASE WHEN is_gap_weather THEN 1 END) AS cnt,
             count(CASE WHEN is_filled_weather THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  3 AS id, 'Lücken WR' AS name,
             count(CASE WHEN is_gap_wr THEN 1 END) AS cnt,
             count(CASE WHEN is_filled_wr THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  4 AS id, 'Minuten am Tag' AS name,
             count(CASE WHEN is_during_day THEN 1 END) AS cnt,
             count(CASE WHEN is_during_day AND is_gap AND NOT is_filled THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  5 AS id, 'Lücken am Tag' AS name,
             count(CASE WHEN is_gap AND is_during_day THEN 1 END) AS cnt,
             count(CASE WHEN is_gap AND is_during_day AND is_filled THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  6 AS id, 'Lücken am Tag (Wetter)' AS name,
             count(CASE WHEN is_gap_weather AND is_during_day THEN 1 END) AS cnt,
             count(CASE WHEN is_gap_weather AND is_during_day AND is_filled_wr THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  7 AS id, 'Lücken am Tag (WR)' AS name,
             count(CASE WHEN is_gap_wr AND is_during_day THEN 1 END) AS cnt,
             count(CASE WHEN is_gap_wr AND is_during_day AND is_filled_wr THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     ORDER BY id;
 
+SELECT      gap_method, COUNT(gap_method)
+FROM        pv3.pv3_weather_allwr_2015_filled
+GROUP BY    gap_method;
+
+
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','setup','pv3','pv3_time_sun_weather_allwr_2015_fill','htw_pv3_postgresql_10_fill_gaps.sql','Setup Table');
+SELECT db_log('MA3','v1','setup','pv3','pv3_weather_allwr_2015_filled','htw_pv3_postgresql_10_fill_gaps.sql','Setup Table');
 
 -- export
--- COPY (SELECT * FROM pv3.pv3_time_sun_weather_allwr_2015_fill ORDER BY timestamp) TO 'C:\temp\pv3_data_2015\calculation\pv3_time_sun_weather_allwr_2015_fill.csv' DELIMITER ';' CSV HEADER;
+-- COPY (SELECT * FROM pv3.pv3_weather_allwr_2015_filled ORDER BY timestamp) TO 'C:\temp\pv3_data_2015\calculation\pv3_weather_allwr_2015_filled.csv' DELIMITER ';' CSV HEADER;
 
 
 
 -- WR
 -- Fülle alle WR-Daten mit 0
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
+UPDATE pv3.pv3_weather_allwr_2015_filled AS t1
     SET gap_method = 0,
         is_filled = TRUE,
         is_filled_wr = TRUE,
@@ -236,19 +250,19 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
         wr5_pr = 0
     FROM (
         SELECT  d.*
-        FROM    pv3.pv3_time_sun_weather_allwr_2015_fill AS d
+        FROM    pv3.pv3_weather_allwr_2015_filled AS d
         WHERE   is_gap = TRUE AND is_gap_wr = TRUE
         )AS t2
     WHERE   t1.timestamp = t2.timestamp;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','update','pv3','pv3_time_sun_weather_allwr_2015_fill','htw_pv3_postgresql_10_fill_gaps.sql','Update WR-Data');
+SELECT db_log('MA3','v1','update','pv3','pv3_weather_allwr_2015_filled','htw_pv3_postgresql_10_fill_gaps.sql','Update WR-Data');
 
 -- Überprüfung
 SELECT  3 AS id, 'Lücken WR' AS name,
         count(CASE WHEN is_gap_wr THEN 1 END) AS cnt,
         count(CASE WHEN is_filled_wr THEN 1 END) AS filled
-FROM    pv3.pv3_time_sun_weather_allwr_2015_fill;
+FROM    pv3.pv3_weather_allwr_2015_filled;
 
 
 
@@ -257,9 +271,9 @@ FROM    pv3.pv3_time_sun_weather_allwr_2015_fill;
 
 
 -- VARIANTE 0
-
+/*
 -- Fülle alle Wetterdaten mit 0
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
+UPDATE pv3.pv3_weather_allwr_2015_filled AS t1
     SET gap_method = 0,
         is_filled = TRUE,
         is_filled_weather = TRUE,
@@ -276,7 +290,7 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
         i_niederschlag = 0
     FROM (
         SELECT  d.*
-        FROM    pv3.pv3_time_sun_weather_allwr_2015_fill AS d
+        FROM    pv3.pv3_weather_allwr_2015_filled AS d
         WHERE   is_gap = TRUE AND is_gap_weather = TRUE
         )AS t2
     WHERE   t1.timestamp = t2.timestamp;
@@ -285,10 +299,10 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
 SELECT  'Wetter' AS gap,
         count(CASE WHEN is_gap_weather THEN 1 END) AS cnt,
         count(CASE WHEN is_filled_weather THEN 1 END) AS filled
-FROM    pv3.pv3_time_sun_weather_allwr_2015_fill;
+FROM    pv3.pv3_weather_allwr_2015_filled;
 
 -- Reset fill mit NULL (weil keine gute Methode und wir es können)
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
+UPDATE pv3.pv3_weather_allwr_2015_filled AS t1
     SET gap_method = NULL,
         is_filled = FALSE,
         is_filled_weather = FALSE,
@@ -305,27 +319,27 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
         i_niederschlag = NULL
     FROM (
         SELECT  d.*
-        FROM    pv3.pv3_time_sun_weather_allwr_2015_fill AS d
+        FROM    pv3.pv3_weather_allwr_2015_filled AS d
         WHERE   is_gap = TRUE AND is_gap_weather = TRUE AND is_filled_weather = TRUE
         )AS t2
     WHERE   t1.timestamp = t2.timestamp;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','update','pv3','pv3_time_sun_weather_allwr_2015_fill','htw_pv3_postgresql_10_fill_gaps.sql','Update Weather Data and Revert');
+SELECT db_log('MA3','v1','update','pv3','pv3_weather_allwr_2015_filled','htw_pv3_postgresql_10_fill_gaps.sql','Update Weather Data and Revert');
 
 -- Überprüfe gefüllte Lücken
 SELECT  'Wetter' AS gap,
         count(CASE WHEN is_gap_weather THEN 1 END) AS cnt,
         count(CASE WHEN is_filled_weather THEN 1 END) AS filled
-FROM    pv3.pv3_time_sun_weather_allwr_2015_fill;
-
+FROM    pv3.pv3_weather_allwr_2015_filled;
+*/
 
 
 -- VARIANTE 1 - Nachts 0, Tagsüber Mittelwert
 
 -- Fülle alle Wetterdaten in der Nacht mit 0
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
-    SET gap_method = 0,
+UPDATE pv3.pv3_weather_allwr_2015_filled AS t1
+    SET gap_method = 1,
         is_filled = TRUE,
         is_filled_weather = TRUE,
         g_hor_cmp6 = 0,
@@ -341,7 +355,7 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
         i_niederschlag = 0
     FROM (
         SELECT  d.*
-        FROM    pv3.pv3_time_sun_weather_allwr_2015_fill AS d
+        FROM    pv3.pv3_weather_allwr_2015_filled AS d
         WHERE   is_gap = TRUE AND is_gap_weather = TRUE AND is_during_day = FALSE
         )AS t2
     WHERE   t1.timestamp = t2.timestamp;
@@ -350,12 +364,12 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
 SELECT  6 AS id, 'Lücken am Tag (Wetter)' AS name,
         count(CASE WHEN is_gap_weather AND is_during_day THEN 1 END) AS cnt,
         count(CASE WHEN is_gap_weather AND is_during_day AND is_filled_wr THEN 1 END) AS filled
-FROM    pv3.pv3_time_sun_weather_allwr_2015_fill;
+FROM    pv3.pv3_weather_allwr_2015_filled;
 
 
 -- Fülle alle Wetterdaten am Tag mit Stundenmittel
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
-    SET gap_method = '1',
+UPDATE pv3.pv3_weather_allwr_2015_filled AS t1
+    SET gap_method = 2,
         is_filled = TRUE,
         is_filled_weather = TRUE,
         g_hor_cmp6 = ROUND(cast(t2.g_hor_cmp6_avg as numeric)),
@@ -371,7 +385,7 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
         i_niederschlag = ROUND(cast(t2.i_niederschlag_avg as numeric),1)
     FROM (
         SELECT  d.*, f.*
-        FROM    pv3.pv3_time_sun_weather_allwr_2015_fill AS d
+        FROM    pv3.pv3_weather_allwr_2015_filled AS d
         LEFT JOIN   pv3.pv3_time_weather_2015_hourly_mview AS f
         ON (f.timestamp_avg=date_trunc('hour',d.timestamp))
             WHERE   d.is_gap = TRUE
@@ -381,20 +395,20 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
     WHERE   t1.timestamp = t2.timestamp;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','update','pv3','pv3_time_sun_weather_allwr_2015_fill','htw_pv3_postgresql_10_fill_gaps.sql','Update Weather Data by day and night');
+SELECT db_log('MA3','v1','update','pv3','pv3_weather_allwr_2015_filled','htw_pv3_postgresql_10_fill_gaps.sql','Update Weather Data by day and night');
 
 -- Überprüfe gefüllte Lücken
 SELECT  6 AS id, 'Lücken am Tag (Wetter)' AS name,
         count(CASE WHEN is_gap_weather AND is_during_day THEN 1 END) AS cnt,
         count(CASE WHEN is_gap_weather AND is_during_day AND is_filled_wr THEN 1 END) AS filled
-FROM    pv3.pv3_time_sun_weather_allwr_2015_fill;
+FROM    pv3.pv3_weather_allwr_2015_filled;
 
 
 -- Wetterlücken gefüllt
 DROP MATERIALIZED VIEW IF EXISTS pv3.pv3_time_sun_weather_allwr_2015_fill_gaps_mview CASCADE;
 CREATE MATERIALIZED VIEW         pv3.pv3_time_sun_weather_allwr_2015_fill_gaps_mview AS
     SELECT *
-    FROM pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM pv3.pv3_weather_allwr_2015_filled
     WHERE is_gap_weather = TRUE
     ORDER BY timestamp;
 
@@ -407,7 +421,7 @@ SELECT db_log('MA3','v1','output','pv3','pv3_time_sun_weather_allwr_2015_fill_ga
 
 -- Setze 0 bei Nacht
 -- 1	weather	5	01.01.2015	01.01.2015 02:02	01.01.2015 02:06	09:18:48	17:01:45	FALSE	
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
+UPDATE pv3.pv3_weather_allwr_2015_filled AS t1
     SET gap_method = 0,
         is_filled = TRUE,
         g_hor_cmp6 = 0,
@@ -423,7 +437,7 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
         i_niederschlag = 0
     FROM (
         SELECT  d.*
-        FROM    pv3.pv3_time_sun_weather_allwr_2015_fill AS d
+        FROM    pv3.pv3_weather_allwr_2015_filled AS d
         WHERE   date = '2015-01-01' AND is_gap = TRUE
         )AS t2
     WHERE   t1.timestamp = t2.timestamp;
@@ -431,7 +445,7 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
 
 -- Fill Gaps One-by-One (see pv3.data_gaps)
 -- 7	weather	3	04.12.2015	04.12.2015 10:14	04.12.2015 10:16	08:59:37	16:53:40	TRUE	
-UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
+UPDATE pv3.pv3_weather_allwr_2015_filled AS t1
     SET gap_method = '1 - 1H AVG',
         is_filled = TRUE,
         g_hor_cmp6 = t2.g_hor_cmp6_avg,
@@ -447,7 +461,7 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
         i_niederschlag = t2.i_niederschlag_avg
     FROM (
         SELECT  d.*, f.*
-        FROM    pv3.pv3_time_sun_weather_allwr_2015_fill AS d
+        FROM    pv3.pv3_weather_allwr_2015_filled AS d
         LEFT JOIN   pv3.hourly_htw_weatherdata_2015 AS f
         ON (f.timestamp_avg=date_trunc('hour',d.timestamp))
              WHERE   d.date = '2015-12-04' 
@@ -463,46 +477,60 @@ UPDATE pv3.pv3_time_sun_weather_allwr_2015_fill AS t1
 
 
 -- Überprüfe Lücken
-DROP VIEW IF EXISTS    pv3.pv3_time_sun_weather_allwr_2015_fill_stat_view CASCADE;
-CREATE VIEW            pv3.pv3_time_sun_weather_allwr_2015_fill_stat_view AS
+DROP VIEW IF EXISTS    pv3.pv3_weather_allwr_2015_filled_stat_view CASCADE;
+CREATE VIEW            pv3.pv3_weather_allwr_2015_filled_stat_view AS
     SELECT  1 AS id, 'Lücken Gesamt' AS name,
             count(CASE WHEN is_gap THEN 1 END) AS cnt,
             count(CASE WHEN is_filled THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  2 AS id, 'Lücken Wetter' AS name,
             count(CASE WHEN is_gap_weather THEN 1 END) AS cnt,
             count(CASE WHEN is_filled_weather THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  3 AS id, 'Lücken WR' AS name,
             count(CASE WHEN is_gap_wr THEN 1 END) AS cnt,
             count(CASE WHEN is_filled_wr THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  4 AS id, 'Minuten am Tag' AS name,
             count(CASE WHEN is_during_day THEN 1 END) AS cnt,
             count(CASE WHEN is_during_day AND is_gap AND is_filled THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  5 AS id, 'Lücken am Tag' AS name,
             count(CASE WHEN is_gap AND is_during_day THEN 1 END) AS cnt,
             count(CASE WHEN is_gap AND is_during_day AND is_filled THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  6 AS id, 'Lücken am Tag (Wetter)' AS name,
             count(CASE WHEN is_gap_weather AND is_during_day THEN 1 END) AS cnt,
             count(CASE WHEN is_gap_weather AND is_during_day AND is_filled_wr THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  7 AS id, 'Lücken am Tag (WR)' AS name,
             count(CASE WHEN is_gap_wr AND is_during_day THEN 1 END) AS cnt,
             count(CASE WHEN is_gap_wr AND is_during_day AND is_filled_wr THEN 1 END) AS filled
-    FROM    pv3.pv3_time_sun_weather_allwr_2015_fill
+    FROM    pv3.pv3_weather_allwr_2015_filled
     ORDER BY id;
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
-SELECT db_log('MA3','v1','output','pv3','pv3_time_sun_weather_allwr_2015_fill_stat_view','htw_pv3_postgresql_10_fill_gaps.sql','Create summary MView');
+SELECT db_log('MA3','v1','output','pv3','pv3_weather_allwr_2015_filled_stat_view','htw_pv3_postgresql_10_fill_gaps.sql','Create summary MView');
+
+
+-- Erstelle Wetter MView
+DROP MATERIALIZED VIEW IF EXISTS pv3.pv3_weather_2015_filled_mview CASCADE;
+CREATE MATERIALIZED VIEW         pv3.pv3_weather_2015_filled_mview AS
+    SELECT  timestamp, date, time,
+            sunrise, sunset,
+            g_hor_cmp6, g_hor_si, g_gen_cmp11, g_gen_si, ev_beleuchtung, v_wind, d_wind, t_luft, h_luft, p_luft, i_niederschlag
+            is_gap, is_gap_weather, is_gap_wr, is_during_day,gap_method, is_filled, is_filled_weather, is_filled_wr
+    FROM    pv3.pv3_weather_allwr_2015_filled;
+
+-- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
+SELECT db_log('MA3','v1','output','pv3','pv3_weather_2015_filled_mview','htw_pv3_postgresql_10_fill_gaps.sql','Create filled weather MView');
+
 
 -- Select latest entries
 SELECT * FROM pv3.db_log ORDER BY id DESC LIMIT 5;
