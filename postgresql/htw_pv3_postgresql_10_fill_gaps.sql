@@ -127,10 +127,6 @@ GROUP BY    gap_method;
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('MA3','v1','setup','pv3','pv3_weather_allwr_2015_filled','htw_pv3_postgresql_10_fill_gaps.sql','Setup Table');
 
--- export
--- COPY (SELECT * FROM pv3.pv3_weather_allwr_2015_filled ORDER BY timestamp) TO 'C:\temp\pv3_data_2015\calculation\pv3_weather_allwr_2015_filled.csv' DELIMITER ';' CSV HEADER;
-
-
 
 -- WR
 -- Fülle alle WR-Daten mit 0
@@ -530,6 +526,20 @@ CREATE MATERIALIZED VIEW         pv3.pv3_weather_2015_filled_mview AS
 
 -- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
 SELECT db_log('MA3','v1','output','pv3','pv3_weather_2015_filled_mview','htw_pv3_postgresql_10_fill_gaps.sql','Create filled weather MView');
+
+
+-- Export
+COPY (SELECT * FROM pv3.pv3_weather_allwr_2015_filled ORDER BY timestamp) TO 'C:\data\pv3_data_2015\calculation\pv3_weather_allwr_2015_filled.csv' DELIMITER ';' CSV HEADER;
+
+-- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
+SELECT db_log('MA3','v1','output','pv3','pv3_weather_allwr_2015_filled','htw_pv3_postgresql_10_fill_gaps.sql','Export data');
+
+
+-- Export
+COPY (SELECT * FROM pv3.pv3_weather_2015_filled_mview ORDER BY timestamp) TO 'C:\data\pv3_data_2015\calculation\pv3_weather_2015_filled_mview.csv' DELIMITER ';' CSV HEADER;
+
+-- Database Logging (project,version,io,schema_name,table_name,script_name,comment)
+SELECT db_log('MA3','v1','output','pv3','pv3_weather_2015_filled_mview','htw_pv3_postgresql_10_fill_gaps.sql','Export data');
 
 
 -- Select latest entries
