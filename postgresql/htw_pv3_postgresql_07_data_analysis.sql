@@ -1,6 +1,8 @@
 /*
 Data analysis and data gaps
 
+You need to create the folder data/calculations/.
+
 Zu beantwortende Fragen:
 -- Anzahl der fehlenden Daten (Lücken) in den Wetter- und WR-Daten
 0. Anzahl Soll-Messwerte
