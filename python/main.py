@@ -1,9 +1,6 @@
 import sys
-import os
 import getpass
 import pandas as pd
-import numpy as np
-import json
 from sqlalchemy import *
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
@@ -25,9 +22,9 @@ def postgres_session():
     port = input('port (default 5432): ')  # '5435' or '5432'
     database = 'sonnja_db'  # input("database name (default 'reeem'): ")
     user = 'sonnja'  # input('user (default postgres): ')
-    # password = input('password: ')
-    password = getpass.getpass(prompt='password: ',
-                               stream=sys.stderr)
+    password = input('password: ')
+    # password = getpass.getpass(prompt='password: ',
+    #                           stream=sys.stderr)
     con = create_engine(
         'postgresql://' + '%s:%s@%s:%s/%s' % (user,
                                               password,
