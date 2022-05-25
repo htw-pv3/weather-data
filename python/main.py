@@ -1,3 +1,23 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+HTW-PV3 - Weather Data - Main file
+
+Export weatherdata for PVSOL and POLYSUN
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+"""
+
+__copyright__ = "© Ludwig Hülk"
+__license__ = "GNU Affero General Public License Version 3 (AGPL-3.0)"
+__url__ = "https://www.gnu.org/licenses/agpl-3.0.en.html"
+__author__ = "Ludee;"
+__version__ = "v0.0.1"
+
+from settings import postgres_session
+from pv3_export_polysun import export_htw_polysun
+
 import sys
 import getpass
 import pandas as pd
@@ -13,47 +33,25 @@ version = 'v1 (jupyter)'
 project = 'pv3'
 
 
-def postgres_session():
-    """SQLAlchemy session object with valid connection to reeem database"""
+if __name__ == "__main__":
 
-    print('Please provide connection parameters to database:\n' +
-          'Hit [Enter] to take defaults')
-    host = 'localhost'  # input('host (default 130.226.55.43): ')
-    port = input('port (default 5432): ')  # '5435' or '5432'
-    database = 'sonnja_db'  # input("database name (default 'reeem'): ")
-    user = 'sonnja'  # input('user (default postgres): ')
-    password = input('password: ')
-    # password = getpass.getpass(prompt='password: ',
-    #                           stream=sys.stderr)
-    con = create_engine(
-        'postgresql://' + '%s:%s@%s:%s/%s' % (user,
-                                              password,
-                                              host,
-                                              port,
-                                              database)).connect()
-    print('Password correct! Database connection established.')
-    return con
+    # start session
+    con = postgres_session()
+
+    # Database select (SQL)
+    sql = text("""
+            SELECT  *                                  -- column
+            FROM    pv3.pv3_weather_2015_filled_mview  -- table
+            """)
+    df_htw = pd.read_sql_query(sql, con)
+    df_htw = df_htw.set_index('timestamp')
 
 
-# start session
-con = postgres_session()
+    """Export data"""
+    # Export HTW for POLYSUN
+    fn_polysun = 'pv3_htw_polysun_1min_2015.csv'
+    export_htw_polysun(df_htw, fn_polysun, 'M', 'g_hor_si')
 
-# Database select (SQL)
-sql = text("""SELECT obj_description('pv3.htw_weatherdata_2015'::regclass);""")
-meta_str = pd.read_sql_query(sql, con).loc[0, 'obj_description']
-print(meta_str)
-
-# Database select (SQL)
-sql = text("""
-    SELECT  timestamp, g_hor_si, g_gen_cmp11, ev_beleuchtung   -- column
-    FROM    pv3.htw_weatherdata_2015  -- table
-    """)
-df = pd.read_sql_query(sql, con)
-df = df.set_index('timestamp')
-
-# Plot
-ax = df.plot(figsize=(12, 4), lw=0.25)
-
-# Resample
-df_reH = df.resample('1H').mean()
-ax = df_reH.plot(figsize=(12, 4), lw=0.75)
+    file_name_polysun_1h = 'pv3_htw_polysun_1h_2015.csv'
+    df_db_htw_weather_1h = df_htw.resample('1H').mean()
+    export_htw_polysun(df_db_htw_weather_1h, file_name_polysun_1h, 'H', 'g_hor_si')
