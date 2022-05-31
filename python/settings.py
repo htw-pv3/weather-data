@@ -16,8 +16,10 @@ __author__ = "Ludee;"
 __version__ = "v0.0.1"
 
 import os
+import sys
 import pandas as pd
 from sqlalchemy import *
+import getpass
 
 # Coordinates
 HTW_LAT = 52.45544
@@ -36,12 +38,12 @@ def postgres_session():
     print('Please provide connection parameters to database:\n' +
           'Hit [Enter] to take defaults')
     host = 'localhost'  # input('host (default 127.0.0.1): ')
-    port = '5435'  # input('port (default 5432): ')
+    port = input('port (default 5432): ')  # port = '5435'
     database = 'sonnja_db'  # input("database name (default 'sonnja_db'): ")
     user = 'sonnja'  # input('user (default postgres): ')
     password = input('password: ')
     # password = getpass.getpass(prompt='password: ',
-    #                           stream=sys.stderr)
+    #                            stream=sys.stderr)
     con = create_engine(
         'postgresql://' + '%s:%s@%s:%s/%s' % (user,
                                               password,
