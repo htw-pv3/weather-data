@@ -15,7 +15,7 @@ __url__ = "https://www.gnu.org/licenses/agpl-3.0.en.html"
 __author__ = "Ludee;"
 __version__ = "v0.0.1"
 
-from settings import postgres_session
+from settings import postgres_session, query_database
 from pv3_export_polysun import export_htw_polysun
 
 import pandas as pd
@@ -29,12 +29,9 @@ if __name__ == "__main__":
     con = postgres_session()
 
     # Select data
-    sql = text("""
-            SELECT  *                                  -- column
-            FROM    pv3.pv3_weather_2015_filled_mview  -- table
-            """)
-    df_htw = pd.read_sql_query(sql, con)
-    df_htw = df_htw.set_index('timestamp')
+    schema = 'pv3'
+    table = 'pv3_weather_2015_filled_mview'
+    df_htw = query_database(con, schema, table)
 
     # Export data
     fn_polysun = 'pv3_htw_polysun_1min_2015.csv'
