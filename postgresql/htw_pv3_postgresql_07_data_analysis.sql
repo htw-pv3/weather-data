@@ -224,6 +224,7 @@ UPDATE pv3.pv3_related_gaps AS g
 
 UPDATE pv3.pv3_related_gaps AS g
     SET     during_day = CASE
+        WHEN ts_start::time < sunset AND ts_end::time > sunrise THEN 'TRUE'
         WHEN ts_start::time < sunrise OR ts_end::time > sunset THEN 'FALSE'
         ELSE 'TRUE'
         END;
