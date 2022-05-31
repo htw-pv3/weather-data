@@ -97,3 +97,5 @@ def export_htw_polysun(df_weather, filename, resolution, parameter_name):
         text_file.seek(0, 0)
         text_file.write(
             polysun_first_row + polysun_second_row + polysun_third_row + '\n' + content)
+
+    print(f'Data saved to file /data/{filename}.')
