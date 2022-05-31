@@ -4,7 +4,7 @@
 """
 HTW-PV3 - Irradiation
 
-Calculate solar position and diffus irradiation.
+Calculate solar position and diffuse irradiation.
 
 pvlib.solarposition.spa_python - https://pvlib-python.readthedocs.io/en/stable/reference/generated/pvlib.solarposition.spa_python.html
 pvlib.irradiance.erbs - https://pvlib-python.readthedocs.io/en/stable/reference/generated/pvlib.irradiance.erbs.html
@@ -18,13 +18,16 @@ __url__ = "https://www.gnu.org/licenses/agpl-3.0.en.html"
 __author__ = "Ludee;"
 __version__ = "v0.0.1"
 
-import pandas as pd
 from pvlib.solarposition import spa_python
 from pvlib.irradiance import erbs
+
+import pandas as pd
 
 
 def calculate_diffuse_irradiation(df, parameter_name, lat, lon):
     """
+    Calculate diffuse irradiation
+
     Parameters
     ----------
     df : DataFrame
@@ -45,11 +48,11 @@ def calculate_diffuse_irradiation(df, parameter_name, lat, lon):
     """
 
     # Calculate solar position from time index
-    df_solarpos = spa_python(df.index, lat, lon)
+    df_solarposition = spa_python(df.index, lat, lon)
 
     # Calculate dhi and dni from parameter
     df_irradiance = erbs(ghi=df.loc[:, parameter_name],
-                         zenith=df_solarpos.zenith,
+                         zenith=df_solarposition.zenith,
                          datetime_or_doy=df.index.dayofyear)
 
     # Setup DataFrame
