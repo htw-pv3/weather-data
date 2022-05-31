@@ -1,9 +1,28 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-from sqlalchemy import *
+"""
+HTW-PV3 - Settings
+
+Database connection and csv handling.
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+"""
+
+__copyright__ = "© Ludwig Hülk"
+__license__ = "GNU Affero General Public License Version 3 (AGPL-3.0)"
+__url__ = "https://www.gnu.org/licenses/agpl-3.0.en.html"
+__author__ = "Ludee;"
+__version__ = "v0.0.1"
+
 import os
+import pandas as pd
+from sqlalchemy import *
 
+# Coordinates
 HTW_LAT = 52.45544
 HTW_LON = 13.52481
+
 
 def postgres_session():
     """SQLAlchemy session object with valid connection to local database
@@ -21,7 +40,7 @@ def postgres_session():
     database = 'sonnja_db'  # input("database name (default 'sonnja_db'): ")
     user = 'sonnja'  # input('user (default postgres): ')
     password = input('password: ')
-    #password = getpass.getpass(prompt='password: ',
+    # password = getpass.getpass(prompt='password: ',
     #                           stream=sys.stderr)
     con = create_engine(
         'postgresql://' + '%s:%s@%s:%s/%s' % (user,
@@ -34,7 +53,8 @@ def postgres_session():
 
 
 def read_from_csv(file_name, sep=';'):
-    df = pd.read_csv(file_name, encoding='latin1', sep=sep, index_col=0, parse_dates=True)  # , skiprows=3)
+    df = pd.read_csv(file_name, encoding='latin1', sep=sep, index_col=0,
+                     parse_dates=True)  # , skiprows=3)
 
     return df
 
@@ -54,7 +74,7 @@ def write_to_csv(csv_name, df, append=True, index=True, sep=';'):
     sep : str
         seperator to be used while writing csv. Semicolon ';' is standard
     """
-    #if os.path.exists(os.path.dirname(csv_name)):
+    # if os.path.exists(os.path.dirname(csv_name)):
     #    os.remove(os.path.dirname(csv_name))
 
     if append:
@@ -67,9 +87,9 @@ def write_to_csv(csv_name, df, append=True, index=True, sep=';'):
 
     with open(csv_name, mode=mode, encoding='utf-8') as file:
         df.to_csv(file, sep=sep,
-                    mode=mode,
-                    header=file.tell() == 0,
-                    line_terminator='\n',
-                    encoding='utf-8',
-                    index=index
-                 )
+                  mode=mode,
+                  header=file.tell() == 0,
+                  line_terminator='\n',
+                  encoding='utf-8',
+                  index=index
+                  )
