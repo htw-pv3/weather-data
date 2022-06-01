@@ -24,8 +24,8 @@ Execute `main.py`
 
 Links
 =====
-[Einleuchtend e.V. SonnJa!](http://einleuchtend.org/sonn-ja/das-projekt/)
-[OEMetadaten](https://github.com/OpenEnergyPlatform/oemetadata/)
+- [Einleuchtend e.V. SonnJa!](http://einleuchtend.org/sonn-ja/das-projekt/)
+- [OEMetadaten](https://github.com/OpenEnergyPlatform/oemetadata/)
 
 
 Collaboration
