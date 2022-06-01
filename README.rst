@@ -4,7 +4,7 @@
 Weather-Data
 ============
 
-**A repository to manage the HTW Weather Data with *PostgreSQL* and *Python*.**
+**A repository to manage the HTW Weather Data with PostgreSQL and Python.**
 
 .. contents::
     :depth: 2
@@ -17,9 +17,9 @@ Introduction
 
 Installation
 ============
-Create a PyCharm project in the folder `python` and add a new folder named `data`.
-Create an environment using the `requirements.yml`.
-Execute `main.py`
+| Create a PyCharm project in the folder `python` and add a new folder named `data`.
+| Create an environment using the `requirements.yml`.
+| Execute `main.py`
 
 
 Links
@@ -36,6 +36,7 @@ Collaboration
 
 License and Citation
 ====================
+
 
 .. |badge_license| image:: https://img.shields.io/github/license/htw-pv3/weather-data
     target: LICENSE.txt
