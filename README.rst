@@ -4,7 +4,7 @@
 Weather-Data
 ============
 
-**A repository to manage the htw weather data with PostgreSQL and Python.**
+**A repository to manage the HTW Weather Data with *PostgreSQL* and *Python*.**
 
 .. contents::
     :depth: 2
@@ -24,8 +24,8 @@ Execute `main.py`
 
 Links
 =====
-- [Einleuchtend e.V. SonnJa!](http://einleuchtend.org/sonn-ja/das-projekt/)
-- [OEMetadaten](https://github.com/OpenEnergyPlatform/oemetadata/)
+- `Einleuchtend e.V. SonnJa! <http://einleuchtend.org/sonn-ja/das-projekt/>`_
+- `OEMetadaten <https://github.com/OpenEnergyPlatform/oemetadata/>`_
 
 
 Collaboration
