@@ -43,8 +43,9 @@ def export_htw_polysun(df_weather, filename, resolution, parameter_name):
     """
 
     # Calculate diffuse irradiation
-    df_dhi = calculate_diffuse_irradiation(df_weather, parameter_name, HTW_LAT,
-                                           HTW_LON)
+    df_irradiance = calculate_diffuse_irradiation(df_weather, parameter_name,
+                                                  HTW_LAT,
+                                                  HTW_LON)
 
     # Set resolution for time index in seconds
     if resolution == 'M':
@@ -64,7 +65,7 @@ def export_htw_polysun(df_weather, filename, resolution, parameter_name):
             drop=True).to_dict())
 
     df_polysun = pd.DataFrame.from_dict(polysun)
-    df_polysun = df_polysun.merge(df_dhi['dhi'].reset_index(drop=True),
+    df_polysun = df_polysun.merge(df_irradiance['dhi'].reset_index(drop=True),
                                   left_index=True, right_index=True)
 
     df_polysun['Lh [W/m²]'] = 0  # Lh Langwellenstrahlung[Wh / m2]
@@ -99,3 +100,4 @@ def export_htw_polysun(df_weather, filename, resolution, parameter_name):
             polysun_first_row + polysun_second_row + polysun_third_row + '\n' + content)
 
     print(f'Data saved to file /data/{filename}.')
+    return df_irradiance
