@@ -491,8 +491,8 @@ CREATE VIEW            pv3.pv3_weather_allwr_2015_filled_stat_view AS
     FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  4 AS id, 'Minuten am Tag' AS name,
-            count(CASE WHEN is_during_day THEN 1 END) AS cnt,
-            count(CASE WHEN is_during_day AND is_gap AND is_filled THEN 1 END) AS filled
+            count(CASE WHEN is_gap AND is_during_day THEN 1 END) AS cnt,
+            count(CASE WHEN is_gap AND is_during_day AND is_filled THEN 1 END) AS filled
     FROM    pv3.pv3_weather_allwr_2015_filled
     UNION ALL
     SELECT  5 AS id, 'Lücken am Tag' AS name,
