@@ -10,3 +10,4 @@ dependencies:
     - xlrd
     - openpyxl
     - psycopg2
+    - pvlib
