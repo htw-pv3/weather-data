@@ -39,6 +39,6 @@ License and Citation
 
 
 .. |badge_license| image:: https://img.shields.io/github/license/htw-pv3/weather-data
-    target: LICENSE.txt
+    :target: LICENSE.txt
     :alt: License not found
 
