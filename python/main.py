@@ -17,6 +17,7 @@ __version__ = "v0.0.1"
 
 from settings import postgres_session, query_database, query_database_metadata
 from pv3_export_polysun import export_htw_polysun
+from plot import create_info_dict, create_plot, save_plot_as_file
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -45,58 +46,11 @@ if __name__ == "__main__":
                                             'g_hor_si')
 
     # Plot Minute
-    info_dict = {}
-    info_dict['Filename'] = ['{}_htw_weatherdata'.format(
-        pd.to_datetime('today').strftime("%Y-%m-%d"))]
-    info_dict['Value'] = ['Bestrahlungsstärke']
-    info_dict['Unit'] = ['W/m²']
-    info_dict['Y-Axis'] = [
-        '{} in {}'.format(*info_dict['Value'], *info_dict['Unit'])]
-    info_dict['X-Axis'] = ['Minute im Jahr']
-    info_dict['Title'] = ['Solarstrahlung']
-    meta_str = query_database_metadata(con, schema, table)
-    info_dict['Metadata'] = [meta_str]
-
-    sns.set_palette("husl")
-    mfig_weatherdata_min = plt.figure(figsize=(12, 5))
-    ax = plt.subplot()
-    plt.title(*info_dict['Title'], fontsize=16)
-    plt.ylabel(*info_dict['Y-Axis'])
-    plt.xlabel(*info_dict['X-Axis'])
-    df_irradiance_min.loc[:, ['dni', 'dhi']].plot(ax=ax,
-                                                  lw=0.5,
-                                                  markeredgewidth=3)
-    ax.set_ylim(ymin=0)
+    idict_min = create_info_dict('min', 'Minute im Jahr')
+    mfig_weatherdata_min = create_plot(idict_min, df_irradiance_min)
+    save_plot_as_file(idict_min, mfig_weatherdata_min)
 
     # Plot Hour
-    info_dict = {}
-    info_dict['Filename'] = ['{}_htw_weatherdata'.format(
-        pd.to_datetime('today').strftime("%Y-%m-%d"))]
-    info_dict['Value'] = ['Bestrahlungsstärke']
-    info_dict['Unit'] = ['W/m²']
-    info_dict['Y-Axis'] = [
-        '{} in {}'.format(*info_dict['Value'], *info_dict['Unit'])]
-    info_dict['X-Axis'] = ['Stunde im Jahr']
-    info_dict['Title'] = ['Solarstrahlung']
-    meta_str = query_database_metadata(con, schema, table)
-    info_dict['Metadata'] = [meta_str]
-
-    sns.set_palette("husl")
-    mfig_weatherdata_hour = plt.figure(figsize=(12, 5))
-    ax = plt.subplot()
-    plt.title(*info_dict['Title'], fontsize=16)
-    plt.ylabel(*info_dict['Y-Axis'])
-    plt.xlabel(*info_dict['X-Axis'])
-    df_irradiance_min.loc[:, ['dni', 'dhi']].resample('1H').mean().plot(ax=ax,
-                                                                        lw=0.5,
-                                                                        markeredgewidth=3)
-    ax.set_ylim(ymin=0)
-
-    # Save plots as file
-    plotname = 'data/{}_min_mfig.png'.format(*info_dict['Filename'])
-    mfig_weatherdata_min.savefig(plotname, bbox_inches='tight')
-    print("Plot saved to file:", plotname)
-
-    plotname = 'data/{}_hour_mfig.png'.format(*info_dict['Filename'])
-    mfig_weatherdata_hour.savefig(plotname, bbox_inches='tight')
-    print("Plot saved to file:", plotname)
+    idict_hour = create_info_dict('hour', 'Stunde im Jahr')
+    mfig_weatherdata_hour = create_plot(idict_hour, df_irradiance_hour)
+    save_plot_as_file(idict_hour, mfig_weatherdata_hour)
