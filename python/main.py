@@ -17,6 +17,7 @@ __version__ = "v0.0.1"
 
 from settings import postgres_session, query_database, query_database_metadata
 from pv3_export_polysun import export_htw_polysun
+from pv3_export_pvsol import export_htw_pvsol
 from plot import create_info_dict, create_plot, save_plot_as_file
 
 import pandas as pd
@@ -34,16 +35,22 @@ if __name__ == "__main__":
     schema = 'pv3'
     table = 'htw_weatherdata_2015'
     df_htw = query_database(con, schema, table)
+    df_htw_hour = df_htw.resample('1H').mean()
 
-    # Export data
+    # Export data Polysun
     fn_polysun = 'pv3_htw_polysun_1min_2015.csv'
     df_irradiance_min = export_htw_polysun(df_htw, fn_polysun, 'M', 'g_hor_si')
 
-    file_name_polysun_1h = 'pv3_htw_polysun_1h_2015.csv'
-    df_htw_hour = df_htw.resample('1H').mean()
-    df_irradiance_hour = export_htw_polysun(df_htw_hour, file_name_polysun_1h,
-                                            'H',
-                                            'g_hor_si')
+    fn_polysun_1h = 'pv3_htw_polysun_1h_2015.csv'
+    df_irradiance_hour = export_htw_polysun(df_htw_hour, fn_polysun_1h, 'H', 'g_hor_si')
+
+    # Export data PVSOL
+    fn_pvsol = 'pv3_htw_pvsol_1min_2015.csv'
+    export_htw_pvsol(df_htw, fn_pvsol)
+
+    fn_pvsol_1h = 'pv3_htw_pvsol_1h_2015.csv'
+    export_htw_pvsol(df_htw_hour, fn_pvsol_1h)
+
 
     # Plot Minute
     idict_min = create_info_dict('min', 'Minute im Jahr')
