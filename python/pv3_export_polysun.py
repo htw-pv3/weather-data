@@ -70,6 +70,7 @@ def export_htw_polysun(df_weather, filename, resolution, parameter_name):
 
     df_polysun['Lh [W/m²]'] = 0  # Lh Langwellenstrahlung[Wh / m2]
 
+    # Rename columns
     column_names = {'g_hor_si': 'Gh [W/m²]',  # Gh Globalstrahlung [Wh/m2]
                     'dhi': 'Dh [W/m²]',  # Dh Diffusstrahlung [Wh/m2]
                     't_luft': 'Tamb [°C]',  # Tamb Umgebungstemperatur [°C]
