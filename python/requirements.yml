@@ -1,4 +1,4 @@
-name: d_py38_pv3vis
+name: d_py38_pv3
 dependencies:
     - python=3.8
     - jupyter
@@ -10,4 +10,5 @@ dependencies:
     - xlrd
     - openpyxl
     - psycopg2
-    - pvlib
+    - pip:
+        - pvlib
