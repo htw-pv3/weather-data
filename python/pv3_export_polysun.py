@@ -101,3 +101,67 @@ def export_htw_polysun(df_weather, filename, resolution, parameter_name):
 
     print(f'Data saved to file /data/{filename}.')
     return df_irradiance
+
+
+def export_fred_polysun(df, filename, resolution):
+    """converts open_FRED data into HTW_Weatherdata format"""
+
+    # dhi doesnt have to be calculated as it is already integrated
+
+    # resample
+    if resolution == 'M':
+        s = 60
+        steps = 525600
+    elif resolution == 'H':
+        s = 3600
+        steps = 8760
+        df = df.resample('H').mean()
+
+        # 1 additional hour found, reduce to 8760 h
+        df = df.loc['2015-01-01 00:00':'2015-12-31 23:00']
+
+
+    df['h_luft'] = 0
+    # rename columns
+    column_names = {'ghi': 'Gh [W/m²]',  # Gh Globalstrahlung [Wh/m2]
+                    'dhi': 'Dh [W/m²]',  # Dh Diffusstrahlung [Wh/m2]
+                    'temp_air': 'Tamb [°C]',  # Tamb Umgebungstemperatur [°C]
+                    'wind_speed': 'Vwnd [m/s]',  # Vwnd Windgeschwindigkeit [m/s]
+                    'h_luft': 'Hrel [%]',  # Hrel Luftfeuchtigkeit [%]
+                   }
+
+
+    df_open_fred = df.rename(columns=column_names)
+    df_open_fred['Lh [W/m²]'] = 0  # Lh Langwellenstrahlung[Wh / m2]
+
+    fred_lat = df_open_fred['lat'][0]
+    fred_lon = df_open_fred['lon'][0]
+
+    time = list(zip(range(steps), [s * i for i in range(steps)]))
+    polysun = {'# Time [s]': dict(time)}
+
+    polysun.update(
+        df_open_fred.loc[:,
+        [ 'Gh [W/m²]', 'Dh [W/m²]', 'Tamb [°C]',
+         'Lh [W/m²]', 'Vwnd [m/s]', 'Hrel [%]']]
+            .reset_index(
+            drop=True).to_dict())
+
+
+    df_polysun = pd.DataFrame.from_dict(polysun)
+
+    write_to_csv(f'./data/{filename}', df_polysun, append=False, index=False)
+
+    ## 1. Todo Doku
+    polysun_first_row = '# Open_FRED Wetter Stundenmittelwerte 2015\n'
+    ## 2. Todo Doku
+        # Todo altitude
+    polysun_second_row = f'# Latitude: {fred_lat:.4f} Longitude: {fred_lon:.4f} altitude: 81m\n'
+    ## 3. Todo Doku
+    polysun_third_row = '#'
+    with open(f'./data/{filename}', "r+") as text_file:
+        content = text_file.read()
+        text_file.seek(0, 0)
+        text_file.write(polysun_first_row + polysun_second_row + polysun_third_row + '\n' + content)
+
+    log.info(f'Write data to file: {filename}')
