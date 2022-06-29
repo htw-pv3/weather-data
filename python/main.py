@@ -16,7 +16,7 @@ __author__ = "Ludee;"
 __version__ = "v0.0.1"
 
 from settings import postgres_session, query_database, query_database_metadata
-from pv3_export_polysun import export_htw_polysun
+from pv3_export_polysun import export_htw_polysun, export_fred_polysun
 from pv3_export_pvsol import export_htw_pvsol
 from plot import create_info_dict, create_plot, save_plot_as_file
 
@@ -37,12 +37,20 @@ if __name__ == "__main__":
     df_htw = query_database(con, schema, table)
     df_htw_hour = df_htw.resample('1H').mean()
 
+    # read open_FRED weatherdata from sonnja_db
+    schema = 'pv3'
+    table = 'openfred_weatherdata_2015_htw'
+    df_fred = query_database(con, schema, table)
+
     # Export data Polysun
     fn_polysun = 'pv3_htw_polysun_1min_2015.csv'
     df_irradiance_min = export_htw_polysun(df_htw, fn_polysun, 'M', 'g_hor_si')
 
     fn_polysun_1h = 'pv3_htw_polysun_1h_2015.csv'
     df_irradiance_hour = export_htw_polysun(df_htw_hour, fn_polysun_1h, 'H', 'g_hor_si')
+
+    fn_polysun_fred = 'pv3_fred_polysun_1h_2015.csv'
+    export_fred_polysun(df_fred, fn_polysun_fred, 'H')
 
     # Export data PVSOL
     fn_pvsol = 'pv3_htw_pvsol_1min_2015.csv'
