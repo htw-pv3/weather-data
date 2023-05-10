@@ -1,7 +1,7 @@
 /*
 Data analysis and data gaps
 
-You need to create the folder data/calculations/.
+You need to create the folder data/calculation/.
 
 Zu beantwortende Fragen:
 -- Anzahl der fehlenden Daten (Lücken) in den Wetter- und WR-Daten
