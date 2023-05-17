@@ -1,6 +1,6 @@
-name: d_py38_pv3
+name: d_py310_pv3
 dependencies:
-    - python=3.8
+    - python=3.10
     - jupyter
     - matplotlib
     - pandas

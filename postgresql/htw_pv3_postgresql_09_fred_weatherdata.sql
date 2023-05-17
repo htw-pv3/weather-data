@@ -1,6 +1,7 @@
 /*
 Import open_FRED weatherdata
 
+Important: Rename file name 
 
 __copyright__   = "© Reiner Lemoine Institut"
 __license__     = "Creative Commons Zero v1.0 Universal (CC0-1.0)"

@@ -65,12 +65,15 @@ def query_database(con, schema_name, table_name):
     df = pd.read_sql_query(sql_query, con)
     df = df.set_index('timestamp')
     print(f'Query database {schema_name}.{table_name}')
+    con.close()
+
     return df
 
 
 def query_database_metadata(con, schema_name, table_name):
     sql_query = text(f"""SELECT obj_description('{schema_name}.{table_name}'::regclass);""")
     meta_str = pd.read_sql_query(sql_query, con).loc[0, 'obj_description']
+    con.close()
 
     return meta_str
 

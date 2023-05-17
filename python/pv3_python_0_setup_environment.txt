@@ -35,12 +35,12 @@ __author__      = "Ludwig Hülk"
 ## From File
 > cd D:\git\github\htw-pv3\weather-data\python
 > conda env create -f requirements.yml
-> activate d_py38_pv3vis
+> activate d_py310_pv3vis
 > conda install colorlover -c conda-forge
 
 ## Manuell
-> conda create --name d_py38_pv3vis python=3.8
-> activate d_py38_pv3vis
+> conda create --name d_py310_pv3vis python=3.10
+> activate d_py310_pv3vis
 > conda install jupyter
 > conda install matplotlib
 > conda install pandas
@@ -56,7 +56,7 @@ __author__      = "Ludwig Hülk"
 > activate d_py38_pv3vis
 
 # Start Jupyter Notebook
-- cd <path>\ma3_python
+- cd <path>\python
 > cd D:\git\github\htw-pv3\weather-data\python
 > jupyter notebook
 
@@ -68,7 +68,7 @@ __author__      = "Ludwig Hülk"
 
 
 # Delete Conda-Environment
-> conda remove --name d_py38_pv3vis --all
+> conda remove --name d_py310_pv3vis --all
 
 
 -- -- Further Commands -- --

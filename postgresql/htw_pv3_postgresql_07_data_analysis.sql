@@ -1,7 +1,7 @@
 /*
 Data analysis and data gaps
 
-You need to create the folder data/calculations/.
+You need to create the folder "C:\data\pv3_data_2015\calculation".
 
 Zu beantwortende Fragen:
 -- Anzahl der fehlenden Daten (Lücken) in den Wetter- und WR-Daten
