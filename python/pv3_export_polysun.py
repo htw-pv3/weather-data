@@ -164,5 +164,3 @@ def export_fred_polysun(df, filename, resolution):
         content = text_file.read()
         text_file.seek(0, 0)
         text_file.write(polysun_first_row + polysun_second_row + polysun_third_row + '\n' + content)
-
-    log.info(f'Write data to file: {filename}')
