@@ -28,18 +28,18 @@ version = 'v1'
 project = 'pv3'
 
 if __name__ == "__main__":
-    # Start database session
-    con = postgres_session()
 
     # Select data
     schema = 'pv3'
     table = 'htw_weatherdata_2015'
+    con = postgres_session()
     df_htw = query_database(con, schema, table)
     df_htw_hour = df_htw.resample('1H').mean()
 
     # read open_FRED weatherdata from sonnja_db
     schema = 'pv3'
     table = 'openfred_weatherdata_2015_htw'
+    con = postgres_session()
     df_fred = query_database(con, schema, table)
 
     # Export data Polysun
