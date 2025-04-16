@@ -16,8 +16,8 @@ __author__ = "Ludee;"
 __version__ = "v0.0.1"
 
 from settings import postgres_session, query_database, query_database_metadata
-from pv3_export_polysun import export_htw_polysun
-from pv3_export_pvsol import export_htw_pvsol
+from pv3_export_polysun import export_htw_polysun, export_fred_polysun
+from pv3_export_pvsol import export_htw_pvsol, export_fred_pvsol
 from plot import create_info_dict, create_plot, save_plot_as_file
 
 import pandas as pd
@@ -28,14 +28,19 @@ version = 'v1'
 project = 'pv3'
 
 if __name__ == "__main__":
-    # Start database session
-    con = postgres_session()
 
     # Select data
     schema = 'pv3'
     table = 'htw_weatherdata_2015'
+    con = postgres_session()
     df_htw = query_database(con, schema, table)
     df_htw_hour = df_htw.resample('1H').mean()
+
+    # read open_FRED weatherdata from sonnja_db
+    schema = 'pv3'
+    table = 'openfred_weatherdata_2015_htw'
+    con = postgres_session()
+    df_fred = query_database(con, schema, table)
 
     # Export data Polysun
     fn_polysun = 'pv3_htw_polysun_1min_2015.csv'
@@ -44,6 +49,9 @@ if __name__ == "__main__":
     fn_polysun_1h = 'pv3_htw_polysun_1h_2015.csv'
     df_irradiance_hour = export_htw_polysun(df_htw_hour, fn_polysun_1h, 'H', 'g_hor_si')
 
+    fn_polysun_fred = 'pv3_fred_polysun_1h_2015.csv'
+    export_fred_polysun(df_fred, fn_polysun_fred, 'H')
+
     # Export data PVSOL
     fn_pvsol = 'pv3_htw_pvsol_1min_2015.csv'
     export_htw_pvsol(df_htw, fn_pvsol)
@@ -51,6 +59,8 @@ if __name__ == "__main__":
     fn_pvsol_1h = 'pv3_htw_pvsol_1h_2015.csv'
     export_htw_pvsol(df_htw_hour, fn_pvsol_1h)
 
+    fn_pvsol_fred = 'pv3_fred_pvsol_1h_2015.csv'
+    export_fred_pvsol(df_fred, fn_pvsol_fred)
 
     # Plot Minute
     idict_min = create_info_dict('min', 'Minute im Jahr')

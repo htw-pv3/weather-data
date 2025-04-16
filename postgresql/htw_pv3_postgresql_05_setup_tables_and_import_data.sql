@@ -282,7 +282,7 @@ COMMENT ON TABLE pv3.einleuchtend_wrdata_2015_wr1 IS '{
     "description": "Data of the measurement series of inverter 1 of the experimental PV system of einleuchtend e.V. at the HTW Berlin",
     "language": [
         "en-GB",
-		"de-DE"
+        "de-DE"
     ],
     "keywords": [
         "wr1",
