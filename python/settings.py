@@ -117,7 +117,7 @@ def write_to_csv(csv_name, df, append=True, index=True, sep=';'):
         df.to_csv(file, sep=sep,
                   mode=mode,
                   header=file.tell() == 0,
-                  line_terminator='\n',
+                  lineterminator='\n',
                   encoding='utf-8',
                   index=index
                   )
