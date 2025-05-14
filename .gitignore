@@ -132,3 +132,4 @@ dmypy.json
 # folder
 python/data/
 python/jupyter/data
+postgresql/archiv
