@@ -30,7 +30,7 @@ conda create --help
 
 ## Start Conda-Environment
 ```bash
-activate d_py310_pv3
+activate d_py314_pv3
 ```
 
 ## Create Environment
@@ -39,13 +39,13 @@ activate d_py310_pv3
 ```bash
 cd D:\git\github\htw-pv3\weather-data\python
 conda env create -f requirements.yml
-activate d_py310_pv3
+activate d_py314_pv3
 conda install colorlover -c conda-forge
 ``` 
 
 ### Manual
 ```bash
-conda create --name d_py310_pv3 python=3.10
+conda create --name d_py314_pv3 python=3.14
 activate d_py310_pv3
 conda install jupyter
 conda install matplotlib
@@ -62,7 +62,7 @@ conda install colorlover -c conda-forge
 
 ## Start  Conda-Environment
 ```bash
-activate d_py38_pv3vis
+activate d_py314_pv3
 ```
 
 ## Start Jupyter Notebook
@@ -82,7 +82,7 @@ deactivate
 
 ## Delete Conda-Environment
 ```bash
-conda remove --name d_py310_pv3 --all
+conda remove --name d_py314_pv3 --all
 ```
 
 
@@ -104,7 +104,7 @@ conda install -c pvlib pvlib
 
 ## Remove package
 ```bash
-conda remove --name d_py38_pv3 sqlalchemy
+conda remove --name d_py314_pv3 sqlalchemy
 ```
 
 ## Install package from file
