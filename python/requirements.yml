@@ -1,4 +1,7 @@
 name: d_py314_pv3
+channels:
+    - conda-forge
+    - defaults
 dependencies:
     - python=3.14
     - jupyter
