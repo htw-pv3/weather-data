@@ -6,7 +6,8 @@ This project contains Python scripts to process, plot and export weather data.
 open console "cmd.exe" as admin
 ```bash
 echo %path%
-set PATH=%PATH%;D:\Anaconda3;D:\Anaconda3\Scripts\
+set PATH=%PATH%;D:\Anaconda3;D:\Anaconda3\Scripts\;D:\Anaconda3\Library\bin;
+setx PATH=%PATH%;D:\Anaconda3;D:\Anaconda3\Scripts\;D:\Anaconda3\Library\bin;
 ```
 
 ## Check conda & python
@@ -45,8 +46,8 @@ conda install colorlover -c conda-forge
 
 ### Manual
 ```bash
-conda create --name d_py314_pv3 python=3.14
-activate d_py310_pv3
+conda create --name d_py314_pv3_manual python=3.14
+activate d_py314_pv3_manual
 conda install jupyter
 conda install matplotlib
 conda install pandas
