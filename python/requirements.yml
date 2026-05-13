@@ -1,6 +1,9 @@
-name: d_py310_pv3
+name: d_py314_pv3
+channels:
+    - conda-forge
+    - defaults
 dependencies:
-    - python=3.10
+    - python=3.14
     - jupyter
     - matplotlib
     - pandas
